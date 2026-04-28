@@ -1,0 +1,3795 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>家庭菜園プランナー</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f5f0e8;color:#2c2016;font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo",sans-serif;min-height:100vh;}
+input[type=number]::-webkit-inner-spin-button{opacity:1;}
+button{font-family:inherit;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:#f0ebe4;}
+::-webkit-scrollbar-thumb{background:#c8b89a;border-radius:3px;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+var _React = React,
+  useState = _React.useState,
+  useMemo = _React.useMemo,
+  useCallback = _React.useCallback;
+var SANS = '"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo",sans-serif';
+var SERIF = '"Hiragino Mincho ProN","Yu Mincho","YuMincho",Georgia,serif';
+var REGIONS = [{
+  id: "hokkaido",
+  name: "北海道",
+  emoji: "❄️",
+  desc: "寒冷地・積雪",
+  offset: -5
+}, {
+  id: "tohoku",
+  name: "東北",
+  emoji: "🏔️",
+  desc: "冷涼・降雪",
+  offset: -2
+}, {
+  id: "kanto",
+  name: "関東",
+  emoji: "🗼",
+  desc: "四季明瞭・梅雨",
+  offset: 0
+}, {
+  id: "chubu",
+  name: "中部",
+  emoji: "⛰️",
+  desc: "内陸・寒暖差大",
+  offset: -1
+}, {
+  id: "kinki",
+  name: "近畿",
+  emoji: "⛩️",
+  desc: "温暖・梅雨長め",
+  offset: 2
+}, {
+  id: "chugoku",
+  name: "中国",
+  emoji: "🌊",
+  desc: "温暖・多雨",
+  offset: 1
+}, {
+  id: "shikoku",
+  name: "四国",
+  emoji: "🌊",
+  desc: "高温多湿",
+  offset: 3
+}, {
+  id: "kyushu",
+  name: "九州",
+  emoji: "🌋",
+  desc: "温暖・台風多",
+  offset: 3
+}, {
+  id: "okinawa",
+  name: "沖縄",
+  emoji: "🏝️",
+  desc: "亜熱帯・通年",
+  offset: 8
+}];
+var FAMILIES = {
+  solanaceae: {
+    name: "ナス科",
+    years: 4,
+    color: "#b91c1c"
+  },
+  cucurbitaceae: {
+    name: "ウリ科",
+    years: 3,
+    color: "#c2410c"
+  },
+  brassicaceae: {
+    name: "アブラナ科",
+    years: 2,
+    color: "#15803d"
+  },
+  leguminosae: {
+    name: "マメ科",
+    years: 1,
+    color: "#1d4ed8"
+  },
+  asteraceae: {
+    name: "キク科",
+    years: 2,
+    color: "#7c3aed"
+  },
+  apiaceae: {
+    name: "セリ科",
+    years: 3,
+    color: "#0f766e"
+  },
+  liliaceae: {
+    name: "ユリ科",
+    years: 1,
+    color: "#b45309"
+  },
+  chenopodiaceae: {
+    name: "アカザ科",
+    years: 1,
+    color: "#4b5563"
+  },
+  poaceae: {
+    name: "イネ科",
+    years: 1,
+    color: "#4d7c0f"
+  },
+  convolvulaceae: {
+    name: "ヒルガオ科",
+    years: 2,
+    color: "#6d28d9"
+  },
+  lamiaceae: {
+    name: "シソ科",
+    years: 1,
+    color: "#0f766e"
+  },
+  malvaceae: {
+    name: "アオイ科",
+    years: 2,
+    color: "#be123c"
+  },
+  araceae: {
+    name: "サトイモ科",
+    years: 3,
+    color: "#78350f"
+  }
+};
+var VEGETABLES = [
+// ── 春夏 ──────────────────────────────────────────────────────────────
+{
+  id: "tomato",
+  name: "トマト",
+  emoji: "🍅",
+  s: "ss",
+  fam: "solanaceae",
+  d: 3,
+  w: "medium",
+  sp: 60,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8, 9],
+  cp: ["basil", "shiso", "carrot", "togarashi"],
+  an: ["cucumber"],
+  tips: "支柱必須。わき芽かきで収量アップ。"
+}, {
+  id: "cherry-tomato",
+  name: "ミニトマト",
+  emoji: "🍒",
+  s: "ss",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 50,
+  gt: "vertical",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8, 9],
+  cp: ["basil", "shiso", "togarashi"],
+  an: ["cucumber"],
+  tips: "放任栽培も可。初心者向き。"
+}, {
+  id: "cucumber",
+  name: "キュウリ",
+  emoji: "🥒",
+  s: "ss",
+  fam: "cucurbitaceae",
+  d: 2,
+  w: "high",
+  sp: 50,
+  gt: "vertical",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8],
+  cp: ["corn", "beans", "dill"],
+  an: ["tomato", "cherry-tomato"],
+  tips: "水多め。ネット誘引。毎日確認。"
+}, {
+  id: "eggplant",
+  name: "ナス",
+  emoji: "🍆",
+  s: "ss",
+  fam: "solanaceae",
+  d: 3,
+  w: "high",
+  sp: 60,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8, 9, 10],
+  cp: ["leek", "shiso", "green-onion"],
+  an: [],
+  tips: "石ナス防止に水切れ注意。"
+}, {
+  id: "pepper",
+  name: "ピーマン",
+  emoji: "🫑",
+  s: "ss",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 50,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8, 9, 10],
+  cp: ["basil", "carrot"],
+  an: [],
+  tips: "整枝で風通しよく。"
+}, {
+  id: "shishito",
+  name: "シシトウ",
+  emoji: "🟢",
+  s: "ss",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8, 9],
+  cp: ["basil"],
+  an: [],
+  tips: "放任でよく実る。ピーマンより手軽。"
+},
+// ── 唐辛子類 ─────────────────────────────────────────────────────────
+{
+  id: "togarashi",
+  name: "鷹の爪",
+  emoji: "🌶️",
+  s: "ss",
+  fam: "solanaceae",
+  d: 1,
+  w: "low",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [8, 9, 10, 11],
+  cp: ["basil", "tomato", "cherry-tomato", "eggplant"],
+  an: [],
+  tips: "乾燥・保存に最適。放任でよく実る。実が赤くなってから収穫。"
+}, {
+  id: "jalapeno",
+  name: "ハラペーニョ",
+  emoji: "🫑",
+  s: "ss",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8, 9, 10],
+  cp: ["basil", "tomato"],
+  an: [],
+  tips: "青いうちに収穫が基本。ピクルス・サルサに。"
+}, {
+  id: "cayenne",
+  name: "カイエンペッパー",
+  emoji: "🌶️",
+  s: "ss",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [8, 9, 10],
+  cp: ["basil"],
+  an: [],
+  tips: "細長い赤唐辛子。粉末・乾燥に向く。"
+},
+// ── 続き春夏 ──────────────────────────────────────────────────────────
+{
+  id: "corn",
+  name: "トウモロコシ",
+  emoji: "🌽",
+  s: "ss",
+  fam: "poaceae",
+  d: 2,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8],
+  cp: ["cucumber", "edamame", "beans"],
+  an: [],
+  tips: "複数列で受粉確実に。"
+}, {
+  id: "edamame",
+  name: "エダマメ",
+  emoji: "🫘",
+  s: "ss",
+  fam: "leguminosae",
+  d: 1,
+  w: "medium",
+  sp: 30,
+  gt: "bush",
+  mt: "early",
+  pm: [4, 5, 6],
+  hm: [7, 8, 9],
+  cp: ["corn", "carrot"],
+  an: ["leek", "garlic", "green-onion", "onion"],
+  tips: "根粒菌で土豊かに。"
+}, {
+  id: "okra",
+  name: "オクラ",
+  emoji: "💚",
+  s: "ss",
+  fam: "malvaceae",
+  d: 2,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [5, 6],
+  hm: [7, 8, 9, 10],
+  cp: [],
+  an: [],
+  tips: "取り遅れると硬くなる。"
+}, {
+  id: "beans",
+  name: "インゲン",
+  emoji: "🫛",
+  s: "ss",
+  fam: "leguminosae",
+  d: 1,
+  w: "medium",
+  sp: 30,
+  gt: "vertical",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8],
+  cp: ["corn", "cucumber", "carrot"],
+  an: ["leek", "garlic", "green-onion", "onion"],
+  tips: "つるなし品種は省スペース。"
+}, {
+  id: "bitter-gourd",
+  name: "ゴーヤ",
+  emoji: "🍵",
+  s: "ss",
+  fam: "cucurbitaceae",
+  d: 1,
+  w: "high",
+  sp: 100,
+  gt: "vertical",
+  mt: "mid",
+  pm: [4, 5],
+  hm: [7, 8, 9],
+  cp: [],
+  an: [],
+  tips: "グリーンカーテンに最適。"
+}, {
+  id: "pumpkin",
+  name: "カボチャ",
+  emoji: "🎃",
+  s: "ss",
+  fam: "cucurbitaceae",
+  d: 2,
+  w: "low",
+  sp: 150,
+  gt: "ground",
+  mt: "late",
+  pm: [4, 5],
+  hm: [7, 8, 9],
+  cp: ["corn", "edamame", "beans"],
+  an: [],
+  tips: "立体栽培でスペース節約。"
+}, {
+  id: "zucchini",
+  name: "ズッキーニ",
+  emoji: "🥬",
+  s: "ss",
+  fam: "cucurbitaceae",
+  d: 2,
+  w: "medium",
+  sp: 80,
+  gt: "bush",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8],
+  cp: [],
+  an: [],
+  tips: "人工授粉で確実収穫。"
+}, {
+  id: "sweet-potato",
+  name: "サツマイモ",
+  emoji: "🍠",
+  s: "ss",
+  fam: "convolvulaceae",
+  d: 1,
+  w: "low",
+  sp: 50,
+  gt: "ground",
+  mt: "late",
+  pm: [5, 6],
+  hm: [9, 10],
+  cp: [],
+  an: [],
+  tips: "痩せ地でも育つ。"
+}, {
+  id: "shiso",
+  name: "シソ（大葉）",
+  emoji: "🌿",
+  s: "ss",
+  fam: "lamiaceae",
+  d: 1,
+  w: "medium",
+  sp: 30,
+  gt: "bush",
+  mt: "early",
+  pm: [4, 5],
+  hm: [6, 7, 8, 9, 10],
+  cp: ["tomato", "cherry-tomato", "eggplant"],
+  an: [],
+  tips: "半日陰でも育つ。"
+}, {
+  id: "basil",
+  name: "バジル",
+  emoji: "🌱",
+  s: "ss",
+  fam: "lamiaceae",
+  d: 2,
+  w: "medium",
+  sp: 30,
+  gt: "bush",
+  mt: "early",
+  pm: [5, 6],
+  hm: [6, 7, 8, 9],
+  cp: ["tomato", "cherry-tomato", "pepper", "togarashi", "jalapeno"],
+  an: [],
+  tips: "トマト・唐辛子類の定番コンパニオン。"
+}, {
+  id: "moroheiya",
+  name: "モロヘイヤ",
+  emoji: "🍃",
+  s: "ss",
+  fam: "malvaceae",
+  d: 1,
+  w: "medium",
+  sp: 40,
+  gt: "vertical",
+  mt: "mid",
+  pm: [5, 6],
+  hm: [7, 8, 9],
+  cp: [],
+  an: [],
+  tips: "栄養満点。高温に強い。"
+},
+// ── 秋冬 ──────────────────────────────────────────────────────────────
+{
+  id: "daikon",
+  name: "ダイコン",
+  emoji: "⚪",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 1,
+  w: "medium",
+  sp: 30,
+  gt: "ground",
+  mt: "mid",
+  pm: [8, 9],
+  hm: [11, 12, 1],
+  cp: ["lettuce", "peas"],
+  an: [],
+  tips: "深く耕す。間引きしながら。"
+}, {
+  id: "hakusai",
+  name: "ハクサイ",
+  emoji: "🥬",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 3,
+  w: "medium",
+  sp: 50,
+  gt: "bush",
+  mt: "mid",
+  pm: [8, 9],
+  hm: [11, 12, 1],
+  cp: ["leek", "green-onion", "chrysanthemum"],
+  an: [],
+  tips: "結球には肥料とタイミングが重要。"
+}, {
+  id: "cabbage",
+  name: "キャベツ",
+  emoji: "🥦",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 3,
+  w: "medium",
+  sp: 50,
+  gt: "bush",
+  mt: "mid",
+  pm: [8, 9],
+  hm: [11, 12, 1, 2, 3],
+  cp: ["leek", "green-onion", "chrysanthemum"],
+  an: [],
+  tips: "防虫ネット推奨。"
+}, {
+  id: "broccoli",
+  name: "ブロッコリー",
+  emoji: "🥦",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 2,
+  w: "medium",
+  sp: 50,
+  gt: "vertical",
+  mt: "mid",
+  pm: [8, 9],
+  hm: [11, 12, 1, 2],
+  cp: ["leek", "green-onion"],
+  an: [],
+  tips: "側枝でも収穫できる。"
+}, {
+  id: "spinach",
+  name: "ホウレンソウ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "chenopodiaceae",
+  d: 2,
+  w: "medium",
+  sp: 10,
+  gt: "ground",
+  mt: "early",
+  pm: [9, 10],
+  hm: [11, 12, 1, 2],
+  cp: [],
+  an: [],
+  tips: "石灰でpH調整必須。"
+}, {
+  id: "komatsuna",
+  name: "コマツナ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 1,
+  w: "medium",
+  sp: 10,
+  gt: "ground",
+  mt: "early",
+  pm: [9, 10],
+  hm: [10, 11, 12, 1],
+  cp: [],
+  an: [],
+  tips: "最も育てやすい葉物野菜。"
+}, {
+  id: "carrot",
+  name: "ニンジン",
+  emoji: "🥕",
+  s: "aw",
+  fam: "apiaceae",
+  d: 3,
+  w: "medium",
+  sp: 10,
+  gt: "ground",
+  mt: "mid",
+  pm: [7, 8],
+  hm: [11, 12, 1],
+  cp: ["leek", "onion", "garlic", "lettuce"],
+  an: [],
+  tips: "発芽が最難関。乾燥させないこと。"
+}, {
+  id: "leek",
+  name: "長ネギ",
+  emoji: "🧅",
+  s: "aw",
+  fam: "liliaceae",
+  d: 2,
+  w: "low",
+  sp: 10,
+  gt: "vertical",
+  mt: "late",
+  pm: [3, 4],
+  hm: [10, 11, 12, 1, 2],
+  cp: ["eggplant", "carrot", "broccoli", "cabbage", "hakusai", "daikon"],
+  an: ["beans", "edamame", "peas"],
+  tips: "コンパニオンとして優秀。"
+}, {
+  id: "onion",
+  name: "タマネギ",
+  emoji: "🧅",
+  s: "aw",
+  fam: "liliaceae",
+  d: 3,
+  w: "low",
+  sp: 15,
+  gt: "ground",
+  mt: "late",
+  pm: [10, 11],
+  hm: [5, 6],
+  cp: ["carrot", "lettuce"],
+  an: ["beans", "edamame", "peas"],
+  tips: "越冬させる。とう立ちに注意。"
+}, {
+  id: "garlic",
+  name: "ニンニク",
+  emoji: "🧄",
+  s: "aw",
+  fam: "liliaceae",
+  d: 2,
+  w: "low",
+  sp: 15,
+  gt: "ground",
+  mt: "late",
+  pm: [10, 11],
+  hm: [5, 6],
+  cp: ["carrot", "lettuce"],
+  an: ["beans", "edamame", "peas"],
+  tips: "病害虫に強い。1片ずつ植える。"
+}, {
+  id: "lettuce",
+  name: "レタス",
+  emoji: "🥬",
+  s: "aw",
+  fam: "asteraceae",
+  d: 2,
+  w: "medium",
+  sp: 30,
+  gt: "bush",
+  mt: "mid",
+  pm: [9, 10],
+  hm: [11, 12],
+  cp: ["carrot", "daikon", "garlic", "onion"],
+  an: [],
+  tips: "高温で抽苔。秋まきが向く。"
+}, {
+  id: "cauliflower",
+  name: "カリフラワー",
+  emoji: "🥦",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 4,
+  w: "medium",
+  sp: 60,
+  gt: "bush",
+  mt: "late",
+  pm: [8, 9],
+  hm: [11, 12, 1, 2],
+  cp: ["leek", "green-onion"],
+  an: [],
+  tips: "花蕾を葉で覆う。上級者向き。"
+}, {
+  id: "turnip",
+  name: "カブ",
+  emoji: "⚪",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 1,
+  w: "medium",
+  sp: 15,
+  gt: "ground",
+  mt: "early",
+  pm: [9, 10],
+  hm: [11, 12],
+  cp: [],
+  an: [],
+  tips: "短期間で収穫可。"
+}, {
+  id: "chrysanthemum",
+  name: "シュンギク",
+  emoji: "🌼",
+  s: "aw",
+  fam: "asteraceae",
+  d: 1,
+  w: "medium",
+  sp: 10,
+  gt: "ground",
+  mt: "early",
+  pm: [9, 10],
+  hm: [11, 12, 1],
+  cp: ["cabbage", "hakusai"],
+  an: [],
+  tips: "香りで害虫忌避。"
+}, {
+  id: "bokchoy",
+  name: "チンゲンサイ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 1,
+  w: "medium",
+  sp: 20,
+  gt: "bush",
+  mt: "early",
+  pm: [9, 10],
+  hm: [11, 12],
+  cp: [],
+  an: [],
+  tips: "アブラムシ注意。防虫ネット効果的。"
+}, {
+  id: "mizuna",
+  name: "ミズナ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "brassicaceae",
+  d: 1,
+  w: "medium",
+  sp: 15,
+  gt: "ground",
+  mt: "early",
+  pm: [9, 10],
+  hm: [11, 12, 1],
+  cp: [],
+  an: [],
+  tips: "霜に強く冬も収穫可。"
+}, {
+  id: "peas",
+  name: "エンドウ",
+  emoji: "🫘",
+  s: "aw",
+  fam: "leguminosae",
+  d: 2,
+  w: "medium",
+  sp: 30,
+  gt: "vertical",
+  mt: "mid",
+  pm: [10, 11],
+  hm: [4, 5, 6],
+  cp: ["carrot", "daikon"],
+  an: ["leek", "onion", "garlic", "green-onion"],
+  tips: "越冬させる。支柱・ネット必要。"
+}, {
+  id: "green-onion",
+  name: "万能ネギ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "liliaceae",
+  d: 1,
+  w: "low",
+  sp: 5,
+  gt: "vertical",
+  mt: "early",
+  pm: [9, 10],
+  hm: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  cp: ["cabbage", "hakusai", "broccoli"],
+  an: ["beans", "edamame", "peas"],
+  tips: "年中収穫可。"
+}, {
+  id: "potato",
+  name: "ジャガイモ",
+  emoji: "🥔",
+  s: "aw",
+  fam: "solanaceae",
+  d: 2,
+  w: "medium",
+  sp: 30,
+  gt: "ground",
+  mt: "mid",
+  pm: [2, 3],
+  hm: [6, 7],
+  cp: ["beans"],
+  an: ["tomato", "cherry-tomato", "eggplant", "pepper"],
+  tips: "ナス科なので連作注意。"
+}, {
+  id: "burdock",
+  name: "ゴボウ",
+  emoji: "🌾",
+  s: "aw",
+  fam: "asteraceae",
+  d: 3,
+  w: "low",
+  sp: 15,
+  gt: "ground",
+  mt: "late",
+  pm: [8, 9],
+  hm: [12, 1, 2],
+  cp: [],
+  an: [],
+  tips: "深耕必要。短根品種が家庭向き。"
+}];
+var VARIETIES = {
+  tomato: [{
+    id: "momotaro",
+    name: "桃太郎",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "大玉・最も普及した家庭菜園品種"
+  }, {
+    id: "momotaro-ex",
+    name: "桃太郎EX",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "裂果に強い改良版・初心者向け"
+  }, {
+    id: "first",
+    name: "ファースト",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "中玉・昔ながらの甘み"
+  }, {
+    id: "cf-momoko",
+    name: "CFももこ",
+    maker: "サカタ",
+    mt: "early",
+    notes: "複合病害に強い"
+  }, {
+    id: "home-momo",
+    name: "ホーム桃太郎",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "放任栽培向け"
+  }],
+  "cherry-tomato": [{
+    id: "aiko",
+    name: "アイコ",
+    maker: "サカタ",
+    mt: "early",
+    notes: "ペアシェイプ・甘酸っぱい定番"
+  }, {
+    id: "mini-carol",
+    name: "ミニキャロル",
+    maker: "タキイ",
+    mt: "early",
+    notes: "丸型・豊産性・初心者向け"
+  }, {
+    id: "sugar-mini",
+    name: "シュガーミニ",
+    maker: "タキイ",
+    mt: "early",
+    notes: "高糖度・裂果少"
+  }, {
+    id: "y-aiko",
+    name: "イエローアイコ",
+    maker: "サカタ",
+    mt: "early",
+    notes: "黄色・甘みが強い"
+  }, {
+    id: "sweet100",
+    name: "スイートミニ100",
+    maker: "サカタ",
+    mt: "early",
+    notes: "房取り・豊産"
+  }],
+  togarashi: [{
+    id: "takanotsume",
+    name: "鷹の爪",
+    maker: "各社",
+    mt: "mid",
+    notes: "日本の定番辛味品種。乾燥唐辛子の王道"
+  }, {
+    id: "santaka",
+    name: "三鷹",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "鷹の爪より実大きめ・辛味強い"
+  }, {
+    id: "prik",
+    name: "プリッキーヌ",
+    maker: "各社",
+    mt: "early",
+    notes: "タイ系・超激辛・実が小さく多数つく"
+  }, {
+    id: "koreanred",
+    name: "コリャン（韓国唐辛子）",
+    maker: "各社",
+    mt: "mid",
+    notes: "中辛・キムチや調味料向け"
+  }],
+  jalapeno: [{
+    id: "jalapeno-std",
+    name: "ハラペーニョ",
+    maker: "各社",
+    mt: "mid",
+    notes: "定番・肉厚・緑で収穫"
+  }, {
+    id: "marathon",
+    name: "マラソン",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "安定した着果・病害に強い"
+  }, {
+    id: "mucho-nacho",
+    name: "ムーチョナチョ",
+    maker: "各社",
+    mt: "mid",
+    notes: "大果・辛味やや強め"
+  }],
+  cayenne: [{
+    id: "cayenne-std",
+    name: "カイエンペッパー",
+    maker: "各社",
+    mt: "mid",
+    notes: "細長い・乾燥して粉末に"
+  }, {
+    id: "hungarian",
+    name: "ハンガリアンワックス",
+    maker: "各社",
+    mt: "early",
+    notes: "黄→赤・中辛・肉厚"
+  }, {
+    id: "anaheim",
+    name: "アナハイム",
+    maker: "各社",
+    mt: "mid",
+    notes: "長形・mild～中辛・ロースト向け"
+  }],
+  cucumber: [{
+    id: "natsu",
+    name: "夏すずみ",
+    maker: "タキイ",
+    mt: "early",
+    notes: "うどん粉病に強い定番"
+  }, {
+    id: "freedom",
+    name: "フリーダム",
+    maker: "サカタ",
+    mt: "early",
+    notes: "複合病害に強く豊産"
+  }, {
+    id: "shakitto",
+    name: "シャキット",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "歯切れ抜群"
+  }],
+  eggplant: [{
+    id: "senryo2",
+    name: "千両二号",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "長卵形・最も普及"
+  }, {
+    id: "naga",
+    name: "長ナス",
+    maker: "各社",
+    mt: "mid",
+    notes: "焼きナス向き"
+  }, {
+    id: "mizu",
+    name: "水ナス",
+    maker: "各社",
+    mt: "mid",
+    notes: "泉州の伝統品種・漬物向け"
+  }, {
+    id: "shoya",
+    name: "庄屋大長",
+    maker: "タキイ",
+    mt: "late",
+    notes: "30cm超・焼きナス最高"
+  }],
+  pepper: [{
+    id: "kyoto",
+    name: "京みどり",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "大型肉厚・定番"
+  }, {
+    id: "wonder",
+    name: "ワンダーベル",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "カラーピーマン・甘み強"
+  }, {
+    id: "ace",
+    name: "エース",
+    maker: "サカタ",
+    mt: "early",
+    notes: "極早生・豊産性"
+  }],
+  corn: [{
+    id: "kanro",
+    name: "甘露",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "スーパースイート・定番"
+  }, {
+    id: "snow",
+    name: "スノーホワイト",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "白粒・超甘味種"
+  }, {
+    id: "golden",
+    name: "ゴールデンバンタム",
+    maker: "各社",
+    mt: "mid",
+    notes: "固定種・甘みある黄粒"
+  }],
+  edamame: [{
+    id: "yuagari",
+    name: "湯あがり娘",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "甘みホクホク"
+  }, {
+    id: "tanba",
+    name: "丹波黒枝豆",
+    maker: "各社",
+    mt: "late",
+    notes: "晩生・風味豊か"
+  }, {
+    id: "sapporo",
+    name: "サッポロミドリ",
+    maker: "タキイ",
+    mt: "early",
+    notes: "早生・寒冷地向け"
+  }],
+  daikon: [{
+    id: "aokubi",
+    name: "耐病総太り",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "最も普及・病害に強い"
+  }, {
+    id: "miura",
+    name: "三浦大根",
+    maker: "各社",
+    mt: "late",
+    notes: "煮物向き"
+  }, {
+    id: "shogoin",
+    name: "聖護院大根",
+    maker: "各社",
+    mt: "late",
+    notes: "丸型・京の伝統品種"
+  }],
+  cabbage: [{
+    id: "kinshun",
+    name: "金春",
+    maker: "タキイ",
+    mt: "early",
+    notes: "春早生・4月収穫"
+  }, {
+    id: "saion",
+    name: "彩音",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "裂球しにくい"
+  }, {
+    id: "new-wonder",
+    name: "ニューアーリー",
+    maker: "サカタ",
+    mt: "early",
+    notes: "春まき向け"
+  }],
+  carrot: [{
+    id: "kuroda5",
+    name: "黒田五寸",
+    maker: "各社",
+    mt: "mid",
+    notes: "家庭菜園の定番"
+  }, {
+    id: "romance",
+    name: "ロマンス",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "色鮮やか・甘み豊か"
+  }, {
+    id: "baby",
+    name: "ベビーキャロット",
+    maker: "各社",
+    mt: "early",
+    notes: "短根・プランター向け"
+  }],
+  spinach: [{
+    id: "samurai",
+    name: "サムライ",
+    maker: "タキイ",
+    mt: "early",
+    notes: "早生・立性・収穫しやすい"
+  }, {
+    id: "noble",
+    name: "ノーベル",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "耐病性・秋冬向け"
+  }],
+  broccoli: [{
+    id: "gmagic",
+    name: "グリーンマジック",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "家庭菜園の定番"
+  }, {
+    id: "pixy",
+    name: "ピクセル",
+    maker: "サカタ",
+    mt: "mid",
+    notes: "側枝豊産・長期収穫"
+  }],
+  leek: [{
+    id: "kujyo",
+    name: "九条ネギ",
+    maker: "各社",
+    mt: "mid",
+    notes: "関西定番葉ネギ"
+  }, {
+    id: "fukayuki",
+    name: "深雪一本太",
+    maker: "タキイ",
+    mt: "late",
+    notes: "白根長く柔らか"
+  }],
+  onion: [{
+    id: "senshuki",
+    name: "泉州黄玉葱",
+    maker: "各社",
+    mt: "late",
+    notes: "大阪の伝統品種・甘み強"
+  }, {
+    id: "noncooler",
+    name: "ノンクーラー",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "貯蔵性高い"
+  }],
+  potato: [{
+    id: "danshaku",
+    name: "男爵",
+    maker: "各社",
+    mt: "mid",
+    notes: "粉質・コロッケ向き"
+  }, {
+    id: "may-queen",
+    name: "メークイン",
+    maker: "各社",
+    mt: "mid",
+    notes: "粘質・カレー・煮物向き"
+  }, {
+    id: "kita-akari",
+    name: "キタアカリ",
+    maker: "各社",
+    mt: "early",
+    notes: "黄色肉・甘み強い"
+  }],
+  hakusai: [{
+    id: "musou",
+    name: "無双",
+    maker: "タキイ",
+    mt: "mid",
+    notes: "寒さに強い・結球安定"
+  }, {
+    id: "mini90",
+    name: "ミニ白菜90",
+    maker: "タキイ",
+    mt: "early",
+    notes: "小型・1〜2人世帯向け"
+  }]
+};
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+var VEG_COLORS = {
+  "tomato": "#ef4444",
+  "cherry-tomato": "#fb923c",
+  "cucumber": "#4ade80",
+  "eggplant": "#a78bfa",
+  "pepper": "#a3e635",
+  "shishito": "#65a30d",
+  "togarashi": "#dc2626",
+  "jalapeno": "#16a34a",
+  "cayenne": "#ea580c",
+  "corn": "#fbbf24",
+  "edamame": "#34d399",
+  "okra": "#2dd4bf",
+  "beans": "#6ee7b7",
+  "bitter-gourd": "#86efac",
+  "pumpkin": "#fcd34d",
+  "zucchini": "#bef264",
+  "sweet-potato": "#c084fc",
+  "shiso": "#5eead4",
+  "basil": "#6ee7b7",
+  "moroheiya": "#22d3ee",
+  "daikon": "#e2e8f0",
+  "hakusai": "#bbf7d0",
+  "cabbage": "#86efac",
+  "broccoli": "#4ade80",
+  "spinach": "#34d399",
+  "komatsuna": "#22c55e",
+  "carrot": "#fb923c",
+  "leek": "#a3e635",
+  "onion": "#fde68a",
+  "garlic": "#fef9c3",
+  "lettuce": "#d9f99d",
+  "cauliflower": "#fef3c7",
+  "turnip": "#f1f5f9",
+  "chrysanthemum": "#fde68a",
+  "bokchoy": "#86efac",
+  "mizuna": "#d9f99d",
+  "peas": "#6ee7b7",
+  "green-onion": "#a3e635",
+  "potato": "#d4a27a",
+  "burdock": "#a16207"
+};
+var getVeg = function getVeg(id) {
+  return VEGETABLES.find(function (v) {
+    return v.id === id;
+  });
+};
+var EXP_MAX = {
+  beginner: 2,
+  intermediate: 3,
+  expert: 5
+};
+var WATER_L = {
+  low: "少なめ",
+  medium: "普通",
+  high: "多め"
+};
+var GT_L = {
+  vertical: "立体",
+  ground: "地這い",
+  bush: "コンパクト"
+};
+var MT_L = {
+  early: "早生",
+  mid: "中生",
+  late: "晩生"
+};
+var MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+var bedLenCm = function bedLenCm(b) {
+  return Math.round(b.length * 100);
+};
+var bedWidCm = function bedWidCm(b) {
+  return Math.round(b.width * 100);
+};
+var getRows = function getRows(veg, bed) {
+  return Math.max(1, Math.floor(bedWidCm(bed) / veg.sp));
+};
+var getMaxP = function getMaxP(veg, bed) {
+  return Math.floor(bedLenCm(bed) / veg.sp) * getRows(veg, bed);
+};
+var getLenUsed = function getLenUsed(veg, bed, count) {
+  return count <= 0 ? 0 : Math.ceil(count / getRows(veg, bed)) * veg.sp;
+};
+var calcUsedCm = function calcUsedCm(arr, bed) {
+  return arr.reduce(function (s, item) {
+    var v = getVeg(item.vegId);
+    return v ? s + getLenUsed(v, bed, item.count) : s;
+  }, 0);
+};
+var defaultBeds = function defaultBeds() {
+  return [{
+    id: "bed-0",
+    name: "畝①",
+    length: 2.2,
+    width: 0.6
+  }, {
+    id: "bed-1",
+    name: "畝②",
+    length: 2.2,
+    width: 0.6
+  }, {
+    id: "bed-2",
+    name: "畝③",
+    length: 2.2,
+    width: 0.6
+  }];
+};
+
+// ─── AUTO PLACEMENT ───────────────────────────────────────────────────────────
+function autoPlace(beds, selected, vegCounts, selectedVarieties) {
+  var result = {};
+  beds.forEach(function (b) {
+    return result[b.id] = [];
+  });
+
+  // Expand into individual plant "tokens", sorted: largest spacing first
+  var tokens = selected.flatMap(function (id) {
+    var count = vegCounts[id] || 1;
+    return Array(count).fill(id);
+  }).sort(function (a, b) {
+    var _getVeg, _getVeg2;
+    return (((_getVeg = getVeg(b)) === null || _getVeg === void 0 ? void 0 : _getVeg.sp) || 0) - (((_getVeg2 = getVeg(a)) === null || _getVeg2 === void 0 ? void 0 : _getVeg2.sp) || 0);
+  });
+  var _iterator = _createForOfIteratorHelper(tokens),
+    _step;
+  try {
+    var _loop = function _loop() {
+      var vegId = _step.value;
+      var veg = getVeg(vegId);
+      if (!veg) return 1; // continue
+      var bestBed = null,
+        bestScore = -Infinity;
+      var _iterator2 = _createForOfIteratorHelper(beds),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var bed = _step2.value;
+          var _arr = result[bed.id];
+          var lenCm = bedLenCm(bed);
+          var usedCm = calcUsedCm(_arr, bed);
+          var _existing = _arr.find(function (x) {
+            return x.vegId === vegId;
+          });
+          var newCount = ((_existing === null || _existing === void 0 ? void 0 : _existing.count) || 0) + 1;
+          var addCm = getLenUsed(veg, bed, newCount) - (_existing ? getLenUsed(veg, bed, _existing.count) : 0);
+          if (usedCm + addCm > lenCm + 2) continue; // 2cm tolerance
+
+          // Scoring
+          var score = 0;
+          var bedVegIds = _arr.map(function (x) {
+            return x.vegId;
+          });
+          var _iterator3 = _createForOfIteratorHelper(bedVegIds),
+            _step3;
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var bid = _step3.value;
+              if (bid === vegId) {
+                score += 1;
+                continue;
+              } // consolidate same veg
+              var bv = getVeg(bid);
+              if (!bv) continue;
+              if (veg.cp.includes(bid) || bv.cp.includes(vegId)) score += 3; // companion bonus
+              if (veg.an.includes(bid) || bv.an.includes(vegId)) score -= 10; // antagonist penalty
+            }
+            // Prefer slightly used beds (not empty, not full)
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+          var usedRatio = usedCm / lenCm;
+          score += usedRatio < 0.9 ? usedRatio * 0.5 : -2;
+          if (score > bestScore) {
+            bestScore = score;
+            bestBed = bed;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      if (bestBed) {
+        var arr = result[bestBed.id];
+        var existing = arr.find(function (x) {
+          return x.vegId === vegId;
+        });
+        if (existing) existing.count++;else arr.push({
+          vegId: vegId,
+          varId: selectedVarieties[vegId] || null,
+          count: 1
+        });
+      }
+    };
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      if (_loop()) continue;
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return result;
+}
+
+// ─── PLAN SUGGESTIONS ─────────────────────────────────────────────────────────
+function generateSuggestions(beds, selected) {
+  var suggestions = [];
+  if (!selected.length || !beds.length) return suggestions;
+
+  // Large-spacing vertical vegs → dedicated bed
+  var largeVerts = selected.filter(function (id) {
+    var v = getVeg(id);
+    return v && v.sp >= 50 && v.gt === "vertical";
+  });
+  var smallFills = selected.filter(function (id) {
+    var v = getVeg(id);
+    return v && v.sp <= 15;
+  });
+  var companions = [];
+  for (var i = 0; i < selected.length; i++) for (var j = i + 1; j < selected.length; j++) {
+    var a = getVeg(selected[i]),
+      b = getVeg(selected[j]);
+    if (a && b && (a.cp.includes(selected[j]) || b.cp.includes(selected[i]))) companions.push([a, b]);
+  }
+  var antagonists = [];
+  for (var _i = 0; _i < selected.length; _i++) for (var _j = _i + 1; _j < selected.length; _j++) {
+    var _a = getVeg(selected[_i]),
+      _b = getVeg(selected[_j]);
+    if (_a && _b && (_a.an.includes(selected[_j]) || _b.an.includes(selected[_i]))) antagonists.push([_a, _b]);
+  }
+  if (largeVerts.length) suggestions.push({
+    type: "info",
+    text: "".concat(largeVerts.map(function (id) {
+      var _getVeg3, _getVeg4;
+      return ((_getVeg3 = getVeg(id)) === null || _getVeg3 === void 0 ? void 0 : _getVeg3.emoji) + " " + ((_getVeg4 = getVeg(id)) === null || _getVeg4 === void 0 ? void 0 : _getVeg4.name);
+    }).join("、"), "\u306F\u682A\u9593\u304C\u5927\u304D\u3044\u306E\u3067\u30011\u672C\u306E\u755D\u3092\u72EC\u5360\u307E\u305F\u306F2\u301C3\u682A\u306E\u307F\u306B\u3057\u307E\u3057\u3087\u3046\u3002")
+  });
+  if (smallFills.length) suggestions.push({
+    type: "good",
+    text: "".concat(smallFills.map(function (id) {
+      var _getVeg5, _getVeg6;
+      return ((_getVeg5 = getVeg(id)) === null || _getVeg5 === void 0 ? void 0 : _getVeg5.emoji) + " " + ((_getVeg6 = getVeg(id)) === null || _getVeg6 === void 0 ? void 0 : _getVeg6.name);
+    }).join("、"), "\u306F\u682A\u9593\u304C\u5C0F\u3055\u304F\u755D\u306E\u9699\u9593\u306B\u8A70\u3081\u8FBC\u3081\u307E\u3059\u3002\u5927\u578B\u91CE\u83DC\u306E\u755D\u306E\u7AEF\u306B\u4E00\u7DD2\u306B\u690D\u3048\u3066\u3082OK\u3002")
+  });
+  if (companions.length) suggestions.push({
+    type: "good",
+    text: "相性◎: " + companions.map(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+        a = _ref2[0],
+        b = _ref2[1];
+      return "".concat(a.emoji).concat(a.name, "\u3068").concat(b.emoji).concat(b.name);
+    }).join("、") + " — 同じ畝に植えると互いに助け合います。"
+  });
+  if (antagonists.length) suggestions.push({
+    type: "warn",
+    text: "要注意: " + antagonists.map(function (_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+        a = _ref4[0],
+        b = _ref4[1];
+      return "".concat(a.emoji).concat(a.name, "\u3068").concat(b.emoji).concat(b.name);
+    }).join("、") + " — 必ず別の畝に分けてください。"
+  });
+
+  // Rotation families
+  var famGroups = {};
+  selected.forEach(function (id) {
+    var v = getVeg(id);
+    if (!v) return;
+    (famGroups[v.fam] || (famGroups[v.fam] = [])).push(v);
+  });
+  Object.entries(famGroups).forEach(function (_ref5) {
+    var _FAMILIES$fam;
+    var _ref6 = _slicedToArray(_ref5, 2),
+      fam = _ref6[0],
+      vegs = _ref6[1];
+    if (vegs.length > 1) suggestions.push({
+      type: "info",
+      text: "".concat(vegs.map(function (v) {
+        return v.emoji + v.name;
+      }).join("、"), "\u306F\u540C\u3058").concat((_FAMILIES$fam = FAMILIES[fam]) === null || _FAMILIES$fam === void 0 ? void 0 : _FAMILIES$fam.name, "\u306A\u306E\u3067\u3001\u6765\u5E74\u4EE5\u964D\u306B\u540C\u3058\u755D\u306B\u690D\u3048\u306A\u3044\u3088\u3046\u8F2A\u4F5C\u8A08\u753B\u3092\u7ACB\u3066\u3066\u304A\u304F\u3068\u5B89\u5FC3\u3067\u3059\u3002")
+    });
+  });
+  return suggestions;
+}
+
+// ─── SHARED UI ────────────────────────────────────────────────────────────────
+function Card(_ref7) {
+  var title = _ref7.title,
+    _ref7$accent = _ref7.accent,
+    accent = _ref7$accent === void 0 ? "#2d5a3d" : _ref7$accent,
+    children = _ref7.children;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#fff",
+      borderRadius: 12,
+      border: "1px solid #ddd5c8",
+      padding: "14px 16px",
+      marginBottom: 13,
+      boxShadow: "0 1px 4px rgba(0,0,0,0.04)"
+    }
+  }, title && /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontFamily: SERIF,
+      fontSize: 14,
+      fontWeight: 700,
+      color: accent,
+      margin: "0 0 11px",
+      paddingBottom: 7,
+      borderBottom: "2px solid ".concat(accent, "33")
+    }
+  }, title), children);
+}
+function Alert(_ref8) {
+  var color = _ref8.color,
+    bg = _ref8.bg,
+    children = _ref8.children;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "6px 11px",
+      background: bg,
+      borderRadius: 6,
+      borderLeft: "3px solid ".concat(color),
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+      fontSize: 11,
+      color: color,
+      marginBottom: 5,
+      lineHeight: 1.6
+    }
+  }, children);
+}
+function Tag(_ref9) {
+  var color = _ref9.color,
+    children = _ref9.children;
+  return /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-block",
+      padding: "2px 7px",
+      borderRadius: 12,
+      background: "".concat(color, "18"),
+      color: color,
+      fontSize: 10,
+      fontWeight: 600
+    }
+  }, children);
+}
+
+// ─── STEP BAR ─────────────────────────────────────────────────────────────────
+function StepBar(_ref0) {
+  var step = _ref0.step,
+    setStep = _ref0.setStep,
+    can = _ref0.can;
+  var steps = [{
+    n: 1,
+    icon: "🏡",
+    l: "菜園設定"
+  }, {
+    n: 2,
+    icon: "🥬",
+    l: "野菜選択"
+  }, {
+    n: 3,
+    icon: "📅",
+    l: "栽培プラン"
+  }, {
+    n: 4,
+    icon: "🗺️",
+    l: "区画レイアウト"
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      background: "#1e3d2a"
+    }
+  }, steps.map(function (s) {
+    var active = step === s.n,
+      done = step > s.n,
+      ok = s.n === 1 || can[s.n];
+    return /*#__PURE__*/React.createElement("button", {
+      key: s.n,
+      onClick: function onClick() {
+        return ok && setStep(s.n);
+      },
+      style: {
+        flex: 1,
+        padding: "9px 2px",
+        border: "none",
+        background: active ? "#2d5a3d" : "transparent",
+        color: active ? "#fff" : done ? "#7fcca0" : "#5a8a6e",
+        fontSize: 11,
+        cursor: ok ? "pointer" : "default",
+        fontFamily: SANS,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 3,
+        borderBottom: active ? "3px solid #7fcca0" : "3px solid transparent"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13
+      }
+    }, s.icon), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontWeight: active ? 600 : 400
+      }
+    }, s.l), done && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10
+      }
+    }, "\u2713"));
+  }));
+}
+
+// ─── STEP 1: SETUP ────────────────────────────────────────────────────────────
+function Step1(_ref1) {
+  var region = _ref1.region,
+    setRegion = _ref1.setRegion,
+    beds = _ref1.beds,
+    setBeds = _ref1.setBeds,
+    orientation = _ref1.orientation,
+    setOrientation = _ref1.setOrientation,
+    shade = _ref1.shade,
+    setShade = _ref1.setShade,
+    experience = _ref1.experience,
+    setExperience = _ref1.setExperience,
+    pastFams = _ref1.pastFams,
+    toggleFam = _ref1.toggleFam,
+    onNext = _ref1.onNext;
+  var addBed = function addBed() {
+    return setBeds(function (p) {
+      return [].concat(_toConsumableArray(p), [{
+        id: "bed-".concat(Date.now()),
+        name: "\u755D".concat("①②③④⑤⑥⑦⑧"[p.length] || "＋"),
+        length: 2.2,
+        width: 0.6
+      }]);
+    });
+  };
+  var removeBed = function removeBed(id) {
+    return setBeds(function (p) {
+      return p.filter(function (b) {
+        return b.id !== id;
+      });
+    });
+  };
+  var updateBed = function updateBed(id, f, v) {
+    return setBeds(function (p) {
+      return p.map(function (b) {
+        return b.id === id ? _objectSpread(_objectSpread({}, b), {}, _defineProperty({}, f, parseFloat(v) || b[f])) : b;
+      });
+    });
+  };
+  var renameBed = function renameBed(id, v) {
+    return setBeds(function (p) {
+      return p.map(function (b) {
+        return b.id === id ? _objectSpread(_objectSpread({}, b), {}, {
+          name: v
+        }) : b;
+      });
+    });
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCCD \u304A\u4F4F\u307E\u3044\u306E\u5730\u57DF"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: 7
+    }
+  }, REGIONS.map(function (r) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: r.id,
+      onClick: function onClick() {
+        return setRegion(r.id);
+      },
+      style: {
+        padding: "8px 4px",
+        borderRadius: 8,
+        border: region === r.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: region === r.id ? "#e8f5ee" : "#fafaf8",
+        cursor: "pointer",
+        fontFamily: SANS,
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14
+      }
+    }, r.emoji), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: region === r.id ? 700 : 400,
+        color: region === r.id ? "#2d5a3d" : "#2c2016"
+      }
+    }, r.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8b7355"
+      }
+    }, r.desc));
+  }))), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83C\uDF3F \u755D\u306E\u8A2D\u5B9A"
+  }, beds.map(function (b) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: b.id,
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 80px 80px 30px",
+        gap: 7,
+        marginBottom: 7,
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      value: b.name,
+      onChange: function onChange(e) {
+        return renameBed(b.id, e.target.value);
+      },
+      style: {
+        padding: "6px 9px",
+        borderRadius: 7,
+        border: "1px solid #ddd5c8",
+        fontSize: 13,
+        fontFamily: SANS,
+        fontWeight: 600,
+        color: "#2d5a3d",
+        background: "#f0fdf4"
+      }
+    }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355",
+        marginBottom: 2
+      }
+    }, "\u9577\u3055(m)"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      step: "0.1",
+      min: "0.5",
+      max: "10",
+      value: b.length,
+      onChange: function onChange(e) {
+        return updateBed(b.id, "length", e.target.value);
+      },
+      style: {
+        width: "100%",
+        padding: "6px 7px",
+        borderRadius: 7,
+        border: "1px solid #ddd5c8",
+        fontSize: 12,
+        fontFamily: SANS,
+        boxSizing: "border-box"
+      }
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355",
+        marginBottom: 2
+      }
+    }, "\u5E45(m)"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      step: "0.05",
+      min: "0.3",
+      max: "2",
+      value: b.width,
+      onChange: function onChange(e) {
+        return updateBed(b.id, "width", e.target.value);
+      },
+      style: {
+        width: "100%",
+        padding: "6px 7px",
+        borderRadius: 7,
+        border: "1px solid #ddd5c8",
+        fontSize: 12,
+        fontFamily: SANS,
+        boxSizing: "border-box"
+      }
+    })), beds.length > 1 ? /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return removeBed(b.id);
+      },
+      style: {
+        padding: "5px",
+        background: "#fee2e2",
+        border: "1px solid #fca5a5",
+        borderRadius: 7,
+        cursor: "pointer",
+        fontSize: 12,
+        color: "#b91c1c",
+        marginTop: 15
+      }
+    }, "\u2715") : /*#__PURE__*/React.createElement("div", null));
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: addBed,
+    style: {
+      padding: "6px 14px",
+      borderRadius: 8,
+      border: "1px dashed #2d5a3d",
+      background: "#f0fdf4",
+      color: "#2d5a3d",
+      fontSize: 11,
+      cursor: "pointer",
+      fontFamily: SANS
+    }
+  }, "\uFF0B \u755D\u3092\u8FFD\u52A0"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 9,
+      padding: "7px 11px",
+      background: "#f8f6f3",
+      borderRadius: 8,
+      fontSize: 11,
+      color: "#6b5a4e"
+    }
+  }, "\u5408\u8A08 ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: "#2d5a3d"
+    }
+  }, beds.reduce(function (s, b) {
+    return s + b.length * b.width;
+  }, 0).toFixed(2), "\u33A1"), "\uFF08", beds.map(function (b) {
+    return "".concat(b.name, " ").concat(b.length, "\xD7").concat(b.width, "m");
+  }).join("、"), "\uFF09")), /*#__PURE__*/React.createElement(Card, {
+    title: "\u2600\uFE0F \u65E5\u7167\u30FB\u74B0\u5883"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 11
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#6b5a4e",
+      marginBottom: 5
+    }
+  }, "\u958B\u53E3\u65B9\u5411"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 4
+    }
+  }, ["北", "北東", "東", "南東", "南", "南西", "西", "北西"].map(function (o) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: o,
+      onClick: function onClick() {
+        return setOrientation(o);
+      },
+      style: {
+        padding: "4px 8px",
+        borderRadius: 6,
+        fontSize: 11,
+        cursor: "pointer",
+        fontFamily: SANS,
+        border: orientation === o ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: orientation === o ? "#e8f5ee" : "#fff",
+        color: orientation === o ? "#2d5a3d" : "#4a3728"
+      }
+    }, o);
+  }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#6b5a4e",
+      marginBottom: 5
+    }
+  }, "\u5468\u56F2\u306E\u65E5\u9670"), [{
+    v: false,
+    l: "☀️ 日陰なし"
+  }, {
+    v: true,
+    l: "🌳 日陰あり"
+  }].map(function (_ref10) {
+    var v = _ref10.v,
+      l = _ref10.l;
+    return /*#__PURE__*/React.createElement("button", {
+      key: String(v),
+      onClick: function onClick() {
+        return setShade(v);
+      },
+      style: {
+        display: "block",
+        width: "100%",
+        padding: "8px 7px",
+        marginBottom: 4,
+        borderRadius: 8,
+        fontSize: 12,
+        cursor: "pointer",
+        fontFamily: SANS,
+        border: shade === v ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: shade === v ? "#e8f5ee" : "#fff"
+      }
+    }, l);
+  })))), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83C\uDF31 \u7D4C\u9A13\u5024"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: 7
+    }
+  }, [{
+    id: "beginner",
+    icon: "🌱",
+    label: "初心者",
+    desc: "〜1年",
+    max: "★★まで"
+  }, {
+    id: "intermediate",
+    icon: "🌿",
+    label: "中級者",
+    desc: "2〜4年",
+    max: "★★★まで"
+  }, {
+    id: "expert",
+    icon: "🌳",
+    label: "上級者",
+    desc: "5年以上",
+    max: "すべて"
+  }].map(function (e) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: e.id,
+      onClick: function onClick() {
+        return setExperience(e.id);
+      },
+      style: {
+        padding: "9px 5px",
+        borderRadius: 10,
+        border: experience === e.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: experience === e.id ? "#e8f5ee" : "#fafaf8",
+        cursor: "pointer",
+        textAlign: "center",
+        fontFamily: SANS
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 19,
+        marginBottom: 2
+      }
+    }, e.icon), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: experience === e.id ? "#2d5a3d" : "#2c2016"
+      }
+    }, e.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355"
+      }
+    }, e.desc), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: experience === e.id ? "#2d5a3d" : "#aaa",
+        marginTop: 2,
+        fontWeight: experience === e.id ? 600 : 400
+      }
+    }, e.max));
+  }))), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDD04 \u9023\u4F5C\u969C\u5BB3\u30C1\u30A7\u30C3\u30AF\uFF08\u4EFB\u610F\uFF09"
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 11,
+      color: "#8b7355",
+      margin: "0 0 7px"
+    }
+  }, "\u6700\u8FD1\uFF081\u301C4\u5E74\u4EE5\u5185\uFF09\u540C\u3058\u755D\u3067\u80B2\u3066\u305F\u91CE\u83DC\u306E\u79D1\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 5
+    }
+  }, Object.entries(FAMILIES).map(function (_ref11) {
+    var _ref12 = _slicedToArray(_ref11, 2),
+      fid = _ref12[0],
+      f = _ref12[1];
+    return /*#__PURE__*/React.createElement("button", {
+      key: fid,
+      onClick: function onClick() {
+        return toggleFam(fid);
+      },
+      style: {
+        padding: "3px 9px",
+        borderRadius: 14,
+        fontSize: 11,
+        cursor: "pointer",
+        fontFamily: SANS,
+        border: pastFams.includes(fid) ? "2px solid ".concat(f.color) : "1px solid #ddd5c8",
+        background: pastFams.includes(fid) ? "".concat(f.color, "18") : "#fff",
+        color: pastFams.includes(fid) ? f.color : "#6b5a4e",
+        fontWeight: pastFams.includes(fid) ? 700 : 400
+      }
+    }, f.name, "\uFF08", f.years, "\u5E74\uFF09");
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return region && onNext();
+    },
+    disabled: !region,
+    style: {
+      background: region ? "#2d5a3d" : "#9fb8a8",
+      color: "#fff",
+      border: "none",
+      borderRadius: 8,
+      padding: "11px 26px",
+      fontSize: 13,
+      cursor: region ? "pointer" : "not-allowed",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u91CE\u83DC\u3092\u9078\u3076 \u2192")));
+}
+
+// ─── STEP 2: VEGETABLE + PURCHASE MODE ────────────────────────────────────────
+function Step2(_ref13) {
+  var season = _ref13.season,
+    setSeason = _ref13.setSeason,
+    selected = _ref13.selected,
+    toggleVeg = _ref13.toggleVeg,
+    experience = _ref13.experience,
+    selectedVarieties = _ref13.selectedVarieties,
+    setSelectedVarieties = _ref13.setSelectedVarieties,
+    purchaseMode = _ref13.purchaseMode,
+    setPurchaseMode = _ref13.setPurchaseMode,
+    vegCounts = _ref13.vegCounts,
+    setVegCounts = _ref13.setVegCounts,
+    onBack = _ref13.onBack,
+    onNext = _ref13.onNext;
+  var _useState = useState(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    expandedVeg = _useState2[0],
+    setExpandedVeg = _useState2[1];
+  var _useState3 = useState("all"),
+    _useState4 = _slicedToArray(_useState3, 2),
+    filterMode = _useState4[0],
+    setFilterMode = _useState4[1];
+  var maxDiff = EXP_MAX[experience];
+  var filtered = VEGETABLES.filter(function (v) {
+    if (v.s !== season) return false;
+    if (filterMode === "easy") return v.d <= 2;
+    if (filterMode === "vertical") return v.gt === "vertical";
+    if (filterMode === "ground") return v.gt === "ground";
+    if (filterMode === "hot") return ["togarashi", "jalapeno", "cayenne"].includes(v.id);
+    return true;
+  });
+  var pickVariety = function pickVariety(vegId, varId) {
+    return setSelectedVarieties(function (p) {
+      return _objectSpread(_objectSpread({}, p), {}, _defineProperty({}, vegId, varId));
+    });
+  };
+  var setCount = function setCount(vegId, val) {
+    return setVegCounts(function (p) {
+      return _objectSpread(_objectSpread({}, p), {}, _defineProperty({}, vegId, Math.max(0, parseInt(val) || 0)));
+    });
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#2d5a3d",
+      marginBottom: 6
+    }
+  }, "\uD83D\uDED2 \u82D7\u30FB\u7A2E\u306E\u8CFC\u5165\u72B6\u6CC1"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, [{
+    id: "before",
+    icon: "🏪",
+    label: "購入前",
+    sub: "これから買う予定"
+  }, {
+    id: "after",
+    icon: "🌱",
+    label: "購入済み",
+    sub: "すでに苗がある"
+  }].map(function (m) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: m.id,
+      onClick: function onClick() {
+        return setPurchaseMode(m.id);
+      },
+      style: {
+        flex: 1,
+        padding: "10px 8px",
+        borderRadius: 9,
+        border: purchaseMode === m.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: purchaseMode === m.id ? "#e8f5ee" : "#fff",
+        cursor: "pointer",
+        fontFamily: SANS,
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 16,
+        marginBottom: 2
+      }
+    }, m.icon), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: purchaseMode === m.id ? "#2d5a3d" : "#2c2016"
+      }
+    }, m.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355"
+      }
+    }, m.sub));
+  })), purchaseMode === "after" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 8,
+      padding: "7px 11px",
+      background: "#fffbeb",
+      borderRadius: 8,
+      border: "1px solid #fcd34d",
+      fontSize: 11,
+      color: "#92400e"
+    }
+  }, "\uD83D\uDCA1 \u91CE\u83DC\u3092\u9078\u629E\u3059\u308B\u3068\u82D7\u306E\u6570\u3092\u5165\u529B\u3067\u304D\u307E\u3059\u3002\u5165\u529B\u3057\u305F\u6570\u3092\u3082\u3068\u306B\u533A\u753B\u30EC\u30A4\u30A2\u30A6\u30C8\u3067\u81EA\u52D5\u914D\u7F6E\u306E\u63D0\u6848\u3092\u884C\u3044\u307E\u3059\u3002"), purchaseMode === "before" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 8,
+      padding: "7px 11px",
+      background: "#eff6ff",
+      borderRadius: 8,
+      border: "1px solid #bfdbfe",
+      fontSize: 11,
+      color: "#1e40af"
+    }
+  }, "\uD83D\uDCA1 \u91CE\u83DC\u3092\u9078\u629E\u3059\u308B\u3068\u533A\u753B\u30EC\u30A4\u30A2\u30A6\u30C8\u3067\u914D\u7F6E\u306E\u63D0\u6848\u3068\u624B\u52D5\u914D\u7F6E\u304C\u3067\u304D\u307E\u3059\u3002\u8CFC\u5165\u6570\u306E\u76EE\u5B89\u3082\u8868\u793A\u3057\u307E\u3059\u3002")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 7,
+      marginBottom: 10
+    }
+  }, [{
+    id: "ss",
+    icon: "🌸",
+    label: "春夏野菜",
+    sub: "3〜6月植付け"
+  }, {
+    id: "aw",
+    icon: "🍂",
+    label: "秋冬野菜",
+    sub: "8〜11月植付け"
+  }].map(function (s) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: s.id,
+      onClick: function onClick() {
+        return setSeason(s.id);
+      },
+      style: {
+        flex: 1,
+        padding: "9px",
+        borderRadius: 8,
+        border: season === s.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: season === s.id ? "#e8f5ee" : "#fff",
+        cursor: "pointer",
+        fontFamily: SANS,
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: season === s.id ? "#2d5a3d" : "#2c2016"
+      }
+    }, s.icon, " ", s.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355"
+      }
+    }, s.sub));
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 5,
+      flexWrap: "wrap",
+      marginBottom: 9
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      color: "#6b5a4e",
+      alignSelf: "center"
+    }
+  }, "\u7D5E\u8FBC\uFF1A"), [{
+    id: "all",
+    l: "すべて"
+  }, {
+    id: "easy",
+    l: "初心者向け"
+  }, {
+    id: "vertical",
+    l: "立体"
+  }, {
+    id: "ground",
+    l: "地這い"
+  }, {
+    id: "hot",
+    l: "🌶️ 唐辛子類"
+  }].map(function (f) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: f.id,
+      onClick: function onClick() {
+        return setFilterMode(f.id);
+      },
+      style: {
+        padding: "3px 9px",
+        borderRadius: 12,
+        fontSize: 11,
+        cursor: "pointer",
+        fontFamily: SANS,
+        border: filterMode === f.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: filterMode === f.id ? "#e8f5ee" : "#fff",
+        color: filterMode === f.id ? "#2d5a3d" : "#6b5a4e"
+      }
+    }, f.l);
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: "auto",
+      fontSize: 11,
+      color: "#6b5a4e"
+    }
+  }, "\u9078\u629E: ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: "#2d5a3d"
+    }
+  }, selected.length, "\u7A2E"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill,minmax(108px,1fr))",
+      gap: 7
+    }
+  }, filtered.map(function (v) {
+    var _VARIETIES$v$id;
+    var isSel = selected.includes(v.id);
+    var tooHard = v.d > maxDiff;
+    var fam = FAMILIES[v.fam];
+    var compat = !isSel ? function () {
+      var vv = getVeg(v.id);
+      if (!vv) return "neutral";
+      var good = false;
+      var _iterator4 = _createForOfIteratorHelper(selected),
+        _step4;
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var sid = _step4.value;
+          if (sid === v.id) continue;
+          var sv = getVeg(sid);
+          if (!sv) continue;
+          if (vv.an.includes(sid) || sv.an.includes(v.id)) return "bad";
+          if (vv.cp.includes(sid) || sv.cp.includes(v.id)) good = true;
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+      return good ? "good" : "neutral";
+    }() : "neutral";
+    var borderColor = isSel ? "#2d5a3d" : "#ddd5c8";
+    var bg = isSel ? "#e8f5ee" : "#fff";
+    var chosenVar = isSel && selectedVarieties[v.id] ? (_VARIETIES$v$id = VARIETIES[v.id]) === null || _VARIETIES$v$id === void 0 ? void 0 : _VARIETIES$v$id.find(function (x) {
+      return x.id === selectedVarieties[v.id];
+    }) : null;
+    var isHotPepper = ["togarashi", "jalapeno", "cayenne"].includes(v.id);
+    return /*#__PURE__*/React.createElement("div", {
+      key: v.id,
+      style: {
+        borderRadius: 10,
+        border: "".concat(isSel ? 2 : 1, "px solid ").concat(borderColor),
+        background: bg,
+        opacity: tooHard ? 0.4 : 1,
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return !tooHard && toggleVeg(v.id);
+      },
+      style: {
+        width: "100%",
+        padding: "8px 5px 5px",
+        background: "transparent",
+        border: "none",
+        cursor: tooHard ? "not-allowed" : "pointer",
+        textAlign: "center",
+        fontFamily: SANS
+      }
+    }, isHotPepper && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 8,
+        color: "#dc2626",
+        fontWeight: 700,
+        marginBottom: 1
+      }
+    }, "\uD83C\uDF36\uFE0F \u5510\u8F9B\u5B50"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 19,
+        marginBottom: 2
+      }
+    }, v.emoji), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 600,
+        color: "#2c2016",
+        lineHeight: 1.2,
+        marginBottom: 2
+      }
+    }, v.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: 2,
+        marginBottom: 2
+      }
+    }, /*#__PURE__*/React.createElement(Tag, {
+      color: (fam === null || fam === void 0 ? void 0 : fam.color) || "#888"
+    }, fam === null || fam === void 0 ? void 0 : fam.name)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8b7355"
+      }
+    }, "★".repeat(v.d), "☆".repeat(5 - v.d), " \xB7 ", MT_L[v.mt]), !isSel && compat === "good" && selected.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 3,
+        fontSize: 9,
+        color: "#15803d",
+        fontWeight: 700,
+        background: "#dcfce7",
+        borderRadius: 4,
+        padding: "1px 5px",
+        display: "inline-block"
+      }
+    }, "\uD83E\uDD1D \u76F8\u6027\u25CE"), !isSel && compat === "bad" && selected.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 3,
+        fontSize: 9,
+        color: "#b91c1c",
+        fontWeight: 700,
+        background: "#fee2e2",
+        borderRadius: 4,
+        padding: "1px 5px",
+        display: "inline-block"
+      }
+    }, "\u26A1 \u76F8\u6027\u2717")), isSel && purchaseMode === "after" && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "4px 7px",
+        background: "#fffbeb",
+        borderTop: "1px solid #fde68a",
+        display: "flex",
+        alignItems: "center",
+        gap: 5
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        color: "#92400e",
+        whiteSpace: "nowrap"
+      }
+    }, "\u82D7\u306E\u6570"), /*#__PURE__*/React.createElement("input", {
+      type: "number",
+      min: "0",
+      max: "99",
+      value: vegCounts[v.id] || 1,
+      onChange: function onChange(e) {
+        return setCount(v.id, e.target.value);
+      },
+      style: {
+        width: "46px",
+        padding: "3px 5px",
+        borderRadius: 5,
+        border: "1px solid #fcd34d",
+        fontSize: 12,
+        fontFamily: SANS,
+        textAlign: "center"
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        color: "#92400e"
+      }
+    }, "\u682A")), isSel && VARIETIES[v.id] && /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setExpandedVeg(expandedVeg === v.id ? null : v.id);
+      },
+      style: {
+        width: "100%",
+        padding: "4px 5px",
+        background: expandedVeg === v.id ? "#c6e8d4" : "#e8f5ee",
+        border: "none",
+        borderTop: "1px solid #c6e8d4",
+        cursor: "pointer",
+        fontFamily: SANS,
+        fontSize: 10,
+        color: "#2d5a3d",
+        fontWeight: 600
+      }
+    }, chosenVar ? "\uD83C\uDF3F ".concat(chosenVar.name) : "品種を選ぶ ▾"), isSel && expandedVeg === v.id && VARIETIES[v.id] && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "5px",
+        background: "#f0fdf4",
+        borderTop: "1px solid #c6e8d4"
+      }
+    }, VARIETIES[v.id].map(function (vr) {
+      return /*#__PURE__*/React.createElement("button", {
+        key: vr.id,
+        onClick: function onClick() {
+          pickVariety(v.id, vr.id);
+          setExpandedVeg(null);
+        },
+        style: {
+          display: "block",
+          width: "100%",
+          textAlign: "left",
+          padding: "4px 5px",
+          marginBottom: 2,
+          borderRadius: 5,
+          border: selectedVarieties[v.id] === vr.id ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+          background: selectedVarieties[v.id] === vr.id ? "#e8f5ee" : "#fff",
+          cursor: "pointer",
+          fontFamily: SANS,
+          fontSize: 10
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontWeight: 700,
+          color: "#2d5a3d"
+        }
+      }, vr.name), /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#8b7355",
+          marginLeft: 4
+        }
+      }, vr.maker), /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#b45309",
+          marginLeft: 4,
+          fontSize: 9
+        }
+      }, MT_L[vr.mt]), /*#__PURE__*/React.createElement("div", {
+        style: {
+          color: "#6b5a4e",
+          fontSize: 9,
+          marginTop: 1
+        }
+      }, vr.notes));
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        pickVariety(v.id, null);
+        setExpandedVeg(null);
+      },
+      style: {
+        display: "block",
+        width: "100%",
+        padding: "3px 5px",
+        borderRadius: 5,
+        border: "1px dashed #8b7355",
+        background: "transparent",
+        cursor: "pointer",
+        fontFamily: SANS,
+        fontSize: 10,
+        color: "#8b7355"
+      }
+    }, "\u304A\u307E\u304B\u305B\uFF08\u54C1\u7A2E\u6307\u5B9A\u306A\u3057\uFF09")));
+  }))), purchaseMode === "after" && selected.length > 0 && /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDED2 \u8CFC\u5165\u6E08\u307F\u82D7\u306E\u307E\u3068\u3081",
+    accent: "#b45309"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6
+    }
+  }, selected.map(function (id) {
+    var v = getVeg(id);
+    if (!v) return null;
+    var c = vegCounts[id] || 1;
+    return /*#__PURE__*/React.createElement("div", {
+      key: id,
+      style: {
+        padding: "5px 10px",
+        background: "#fffbeb",
+        border: "1px solid #fcd34d",
+        borderRadius: 8,
+        fontSize: 11
+      }
+    }, v.emoji, " ", v.name, " ", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "#b45309"
+      }
+    }, c, "\u682A"));
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      background: "transparent",
+      color: "#2d5a3d",
+      border: "2px solid #2d5a3d",
+      borderRadius: 8,
+      padding: "9px 18px",
+      fontSize: 12,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u2190 \u623B\u308B"), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return selected.length > 0 && onNext();
+    },
+    disabled: selected.length === 0,
+    style: {
+      background: selected.length > 0 ? "#2d5a3d" : "#9fb8a8",
+      color: "#fff",
+      border: "none",
+      borderRadius: 8,
+      padding: "11px 24px",
+      fontSize: 13,
+      cursor: selected.length > 0 ? "pointer" : "not-allowed",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u30D7\u30E9\u30F3\u3092\u78BA\u8A8D \u2192")));
+}
+
+// ─── STEP 3: PLAN ─────────────────────────────────────────────────────────────
+function Step3(_ref14) {
+  var region = _ref14.region,
+    beds = _ref14.beds,
+    orientation = _ref14.orientation,
+    shade = _ref14.shade,
+    experience = _ref14.experience,
+    selected = _ref14.selected,
+    season = _ref14.season,
+    selectedVarieties = _ref14.selectedVarieties,
+    pastFams = _ref14.pastFams,
+    onBack = _ref14.onBack,
+    onNext = _ref14.onNext;
+  var regionObj = REGIONS.find(function (r) {
+    return r.id === region;
+  });
+  var selVegs = selected.map(getVeg).filter(Boolean);
+  var expLabels = {
+    beginner: "初心者",
+    intermediate: "中級者",
+    expert: "上級者"
+  };
+  var compatIssues = useMemo(function () {
+    var out = [];
+    for (var i = 0; i < selected.length; i++) for (var j = i + 1; j < selected.length; j++) {
+      var a = getVeg(selected[i]),
+        b = getVeg(selected[j]);
+      if (a && b && (a.an.includes(selected[j]) || b.an.includes(selected[i]))) out.push({
+        a: a,
+        b: b
+      });
+    }
+    return out;
+  }, [selected]);
+  var goodPairs = useMemo(function () {
+    var out = [];
+    for (var i = 0; i < selected.length; i++) for (var j = i + 1; j < selected.length; j++) {
+      var a = getVeg(selected[i]),
+        b = getVeg(selected[j]);
+      if (a && b && (a.cp.includes(selected[j]) || b.cp.includes(selected[i]))) out.push({
+        a: a,
+        b: b
+      });
+    }
+    return out;
+  }, [selected]);
+  var rotationWarns = selected.map(getVeg).filter(function (v) {
+    return v && pastFams.includes(v.fam);
+  }).map(function (v) {
+    return {
+      v: v,
+      fam: FAMILIES[v.fam]
+    };
+  });
+  var suggestions = generateSuggestions(beds, selected);
+  var orientNote = ["南", "南東", "南西"].includes(orientation) ? {
+    text: "南向き・日当たり最良。ほとんどの野菜に適しています。",
+    c: "#b45309"
+  } : orientation === "東" ? {
+    text: "東向き。午前中の日照が多く、多くの野菜に適しています。",
+    c: "#b45309"
+  } : orientation === "西" ? {
+    text: "西向き。午後の日照が強め。夏は高温になりやすいので注意。",
+    c: "#b45309"
+  } : orientation ? {
+    text: "北向き・日照が少ない。コマツナ・ミズナ・シソなど半日陰耐性のある野菜が向いています。",
+    c: "#0f766e"
+  } : null;
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83C\uDFE1 \u83DC\u5712\u30B5\u30DE\u30EA\u30FC"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: 7,
+      marginBottom: 10
+    }
+  }, [{
+    icon: "📍",
+    label: "地域",
+    value: regionObj === null || regionObj === void 0 ? void 0 : regionObj.name
+  }, {
+    icon: "🧭",
+    label: "方角",
+    value: orientation || "未設定"
+  }, {
+    icon: "🌳",
+    label: "日陰",
+    value: shade ? "あり" : "なし"
+  }, {
+    icon: "🌱",
+    label: "経験値",
+    value: expLabels[experience]
+  }, {
+    icon: "🥬",
+    label: "選択野菜",
+    value: "".concat(selected.length, "\u7A2E")
+  }, {
+    icon: "📐",
+    label: "畝合計",
+    value: "".concat(beds.reduce(function (s, b) {
+      return s + b.length * b.width;
+    }, 0).toFixed(1), "\u33A1")
+  }].map(function (_ref15) {
+    var icon = _ref15.icon,
+      label = _ref15.label,
+      value = _ref15.value;
+    return /*#__PURE__*/React.createElement("div", {
+      key: label,
+      style: {
+        background: "#f8f6f3",
+        borderRadius: 8,
+        padding: "7px 9px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#8b7355"
+      }
+    }, icon, " ", label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 600
+      }
+    }, value));
+  })), orientNote && /*#__PURE__*/React.createElement(Alert, {
+    color: orientNote.c,
+    bg: "".concat(orientNote.c, "12")
+  }, "\u2600\uFE0F ", orientNote.text), shade && /*#__PURE__*/React.createElement(Alert, {
+    color: "#0f766e",
+    bg: "#f0fdf9"
+  }, "\uD83C\uDF33 \u65E5\u9670\u3042\u308A\u3002\u30B7\u30BD\u30FB\u30B3\u30DE\u30C4\u30CA\u30FB\u30DF\u30BA\u30CA\u30FB\u30DB\u30A6\u30EC\u30F3\u30BD\u30A6\u306A\u3069\u534A\u65E5\u9670\u8010\u6027\u306E\u8449\u7269\u91CE\u83DC\u304C\u5411\u3044\u3066\u3044\u307E\u3059\u3002"), (regionObj === null || regionObj === void 0 ? void 0 : regionObj.offset) < 0 && /*#__PURE__*/React.createElement(Alert, {
+    color: "#1d4ed8",
+    bg: "#eff6ff"
+  }, "\uD83D\uDDFE ", regionObj.name, "\u306F\u95A2\u6771\u3088\u308A\u690D\u4ED8\u3051\u304C", Math.abs(regionObj.offset) >= 4 ? "3〜4週間" : "1〜2週間", "\u9045\u304F\u306A\u308A\u307E\u3059\u3002"), (regionObj === null || regionObj === void 0 ? void 0 : regionObj.offset) > 0 && /*#__PURE__*/React.createElement(Alert, {
+    color: "#b45309",
+    bg: "#fff7ed"
+  }, "\uD83D\uDDFE ", regionObj.name, "\u306F\u95A2\u6771\u3088\u308A\u690D\u4ED8\u3051\u304C1\u301C2\u9031\u9593\u65E9\u307E\u308A\u307E\u3059\u3002")), suggestions.length > 0 && /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCA1 \u755D\u3078\u306E\u914D\u7F6E\u30A2\u30C9\u30D0\u30A4\u30B9",
+    accent: "#b45309"
+  }, suggestions.map(function (s, i) {
+    return /*#__PURE__*/React.createElement(Alert, {
+      key: i,
+      color: s.type === "warn" ? "#b91c1c" : s.type === "good" ? "#15803d" : "#1d4ed8",
+      bg: s.type === "warn" ? "#fee2e2" : s.type === "good" ? "#f0fdf4" : "#eff6ff"
+    }, s.text);
+  })), rotationWarns.length > 0 && /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDD04 \u9023\u4F5C\u969C\u5BB3\u306E\u8B66\u544A",
+    accent: "#b91c1c"
+  }, rotationWarns.map(function (_ref16, i) {
+    var v = _ref16.v,
+      fam = _ref16.fam;
+    return /*#__PURE__*/React.createElement(Alert, {
+      key: i,
+      color: "#b45309",
+      bg: "#fffbeb"
+    }, /*#__PURE__*/React.createElement("strong", null, v.emoji, " ", v.name), "\uFF08", fam.name, "\uFF09\u306F", fam.years, "\u5E74\u4EE5\u4E0A\u9023\u7D9A\u683D\u57F9\u3092\u907F\u3051\u3066\u304F\u3060\u3055\u3044\u3002");
+  })), compatIssues.length > 0 && /*#__PURE__*/React.createElement(Card, {
+    title: "\u26A1 \u76F8\u6027\u306E\u60AA\u3044\u7D44\u307F\u5408\u308F\u305B",
+    accent: "#b91c1c"
+  }, compatIssues.map(function (_ref17, i) {
+    var a = _ref17.a,
+      b = _ref17.b;
+    return /*#__PURE__*/React.createElement(Alert, {
+      key: i,
+      color: "#b91c1c",
+      bg: "#fee2e2"
+    }, a.emoji, " ", a.name, " \xD7 ", b.emoji, " ", b.name, " \u2014 \u5FC5\u305A\u5225\u306E\u755D\u306B\u5206\u3051\u3066\u304F\u3060\u3055\u3044");
+  })), goodPairs.length > 0 && /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83E\uDD1D \u76F8\u6027\u306E\u826F\u3044\u7D44\u307F\u5408\u308F\u305B",
+    accent: "#15803d"
+  }, goodPairs.map(function (_ref18, i) {
+    var a = _ref18.a,
+      b = _ref18.b;
+    return /*#__PURE__*/React.createElement(Alert, {
+      key: i,
+      color: "#15803d",
+      bg: "#f0fdf4"
+    }, a.emoji, " ", a.name, " \u2661 ", b.emoji, " ", b.name, " \u2014 \u540C\u3058\u755D\u306B\u690D\u3048\u308B\u3068\u4E92\u3044\u306B\u4FC3\u9032");
+  })), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCC5 \u683D\u57F9\u30AB\u30EC\u30F3\u30C0\u30FC"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      overflowX: "auto"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse",
+      fontSize: 11
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: "3px 4px",
+      textAlign: "left",
+      color: "#6b5a4e",
+      minWidth: 80,
+      fontWeight: 600
+    }
+  }, "\u91CE\u83DC\u30FB\u54C1\u7A2E"), MONTHS.map(function (m) {
+    return /*#__PURE__*/React.createElement("th", {
+      key: m,
+      style: {
+        padding: "3px 2px",
+        textAlign: "center",
+        color: "#8b7355",
+        minWidth: 21,
+        fontWeight: 400
+      }
+    }, m, "\u6708");
+  }))), /*#__PURE__*/React.createElement("tbody", null, selVegs.map(function (v) {
+    var _VARIETIES$v$id2;
+    var varName = selectedVarieties[v.id] ? (_VARIETIES$v$id2 = VARIETIES[v.id]) === null || _VARIETIES$v$id2 === void 0 || (_VARIETIES$v$id2 = _VARIETIES$v$id2.find(function (x) {
+      return x.id === selectedVarieties[v.id];
+    })) === null || _VARIETIES$v$id2 === void 0 ? void 0 : _VARIETIES$v$id2.name : null;
+    return /*#__PURE__*/React.createElement("tr", {
+      key: v.id,
+      style: {
+        borderTop: "1px solid #f0ebe4"
+      }
+    }, /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "3px 4px",
+        whiteSpace: "nowrap"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 600,
+        fontSize: 11
+      }
+    }, v.emoji, " ", v.name), varName && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#2d5a3d"
+      }
+    }, varName)), MONTHS.map(function (m) {
+      var isP = v.pm.includes(m),
+        isH = v.hm.includes(m);
+      return /*#__PURE__*/React.createElement("td", {
+        key: m,
+        style: {
+          padding: "1px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          height: 12,
+          borderRadius: 2,
+          background: isP ? "#2d5a3d" : isH ? "#c4623a" : "#f0ebe4",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }
+      }, isP && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 7,
+          color: "#fff"
+        }
+      }, "\u690D"), isH && !isP && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 7,
+          color: "#fff"
+        }
+      }, "\u53CE")));
+    }));
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 6,
+      display: "flex",
+      gap: 11,
+      fontSize: 10,
+      color: "#6b5a4e"
+    }
+  }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-block",
+      width: 14,
+      height: 9,
+      background: "#2d5a3d",
+      borderRadius: 2,
+      marginRight: 4,
+      verticalAlign: "middle"
+    }
+  }), "\u690D\u4ED8\u3051"), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "inline-block",
+      width: 14,
+      height: 9,
+      background: "#c4623a",
+      borderRadius: 2,
+      marginRight: 4,
+      verticalAlign: "middle"
+    }
+  }), "\u53CE\u7A6B"))), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83C\uDF3F \u5404\u91CE\u83DC\u306E\u683D\u57F9\u30E1\u30E2"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 7
+    }
+  }, selVegs.map(function (v) {
+    var _VARIETIES$v$id3, _FAMILIES$v$fam;
+    var fam = FAMILIES[v.fam];
+    var varId = selectedVarieties[v.id];
+    var chosenVar = varId ? (_VARIETIES$v$id3 = VARIETIES[v.id]) === null || _VARIETIES$v$id3 === void 0 ? void 0 : _VARIETIES$v$id3.find(function (x) {
+      return x.id === varId;
+    }) : null;
+    return /*#__PURE__*/React.createElement("div", {
+      key: v.id,
+      style: {
+        padding: "9px 11px",
+        background: "#fafaf8",
+        borderRadius: 9,
+        border: "1px solid #e8e0d5",
+        display: "flex",
+        gap: 9
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22,
+        lineHeight: 1
+      }
+    }, v.emoji), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+        marginBottom: 3,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        fontSize: 13
+      }
+    }, v.name), chosenVar && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "#2d5a3d",
+        fontWeight: 600
+      }
+    }, "\u25B6 ", chosenVar.name, "\uFF08", chosenVar.maker, "\uFF09"), /*#__PURE__*/React.createElement(Tag, {
+      color: (fam === null || fam === void 0 ? void 0 : fam.color) || "#888"
+    }, fam === null || fam === void 0 ? void 0 : fam.name), /*#__PURE__*/React.createElement(Tag, {
+      color: "#6b5a4e"
+    }, MT_L[v.mt]), /*#__PURE__*/React.createElement(Tag, {
+      color: "#6b5a4e"
+    }, GT_L[v.gt])), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#6b5a4e",
+        marginBottom: 3
+      }
+    }, "\uD83D\uDCA7 ", WATER_L[v.w], " \xB7 \u682A\u9593 ", v.sp, "cm \xB7 ", "★".repeat(v.d), "☆".repeat(5 - v.d), " \xB7 \u9023\u4F5C\u56DE\u907F", (_FAMILIES$v$fam = FAMILIES[v.fam]) === null || _FAMILIES$v$fam === void 0 ? void 0 : _FAMILIES$v$fam.years, "\u5E74"), chosenVar && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#4a3728",
+        marginBottom: 3,
+        background: "#f0fdf4",
+        padding: "2px 8px",
+        borderRadius: 5
+      }
+    }, "\uD83C\uDF3F ", chosenVar.notes), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#4a3728"
+      }
+    }, "\uD83D\uDCA1 ", v.tips), v.cp.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#15803d",
+        marginTop: 2
+      }
+    }, "\uD83E\uDD1D \u76F8\u6027\u25CE: ", v.cp.map(function (id) {
+      var _getVeg7;
+      return ((_getVeg7 = getVeg(id)) === null || _getVeg7 === void 0 ? void 0 : _getVeg7.name) || id;
+    }).join("、")), v.an.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#b91c1c",
+        marginTop: 1
+      }
+    }, "\u26A1 \u76F8\u6027\u2717: ", v.an.map(function (id) {
+      var _getVeg8;
+      return ((_getVeg8 = getVeg(id)) === null || _getVeg8 === void 0 ? void 0 : _getVeg8.name) || id;
+    }).join("、"))));
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      background: "transparent",
+      color: "#2d5a3d",
+      border: "2px solid #2d5a3d",
+      borderRadius: 8,
+      padding: "9px 18px",
+      fontSize: 12,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u2190 \u623B\u308B"), /*#__PURE__*/React.createElement("button", {
+    onClick: onNext,
+    style: {
+      background: "#2d5a3d",
+      color: "#fff",
+      border: "none",
+      borderRadius: 8,
+      padding: "11px 22px",
+      fontSize: 13,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u533A\u753B\u30EC\u30A4\u30A2\u30A6\u30C8\u3078 \u2192")));
+}
+
+// ─── STEP 4: BED LAYOUT ───────────────────────────────────────────────────────
+function Step4(_ref19) {
+  var beds = _ref19.beds,
+    selected = _ref19.selected,
+    selectedVarieties = _ref19.selectedVarieties,
+    purchaseMode = _ref19.purchaseMode,
+    vegCounts = _ref19.vegCounts,
+    bedContents = _ref19.bedContents,
+    setBedContents = _ref19.setBedContents,
+    onBack = _ref19.onBack;
+  var _useState5 = useState(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    armedVegId = _useState6[0],
+    setArmedVegId = _useState6[1];
+  var _useState7 = useState(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    dragOver = _useState8[0],
+    setDragOver = _useState8[1];
+  var _useState9 = useState(false),
+    _useState0 = _slicedToArray(_useState9, 2),
+    autoPlaced = _useState0[0],
+    setAutoPlaced = _useState0[1];
+  var selVegs = selected.map(getVeg).filter(Boolean);
+  var armedVeg = armedVegId ? getVeg(armedVegId) : null;
+  var totalPlaced = function totalPlaced(vid) {
+    return Object.values(bedContents).reduce(function (s, arr) {
+      var _arr$find;
+      return s + (((_arr$find = arr.find(function (x) {
+        return x.vegId === vid;
+      })) === null || _arr$find === void 0 ? void 0 : _arr$find.count) || 0);
+    }, 0);
+  };
+  var getBedContent = function getBedContent(bid) {
+    return bedContents[bid] || [];
+  };
+  var handleAutoPlace = function handleAutoPlace() {
+    var counts = {};
+    selected.forEach(function (id) {
+      counts[id] = vegCounts[id] || 1;
+    });
+    var result = autoPlace(beds, selected, counts, selectedVarieties);
+    setBedContents(result);
+    setAutoPlaced(true);
+  };
+  var modBed = useCallback(function (bedId, action, vegId) {
+    var bed = beds.find(function (b) {
+        return b.id === bedId;
+      }),
+      veg = getVeg(vegId);
+    if (!bed || !veg) return;
+    var lenCm = bedLenCm(bed);
+    setBedContents(function (prev) {
+      var arr = prev[bedId] || [];
+      var existing = arr.find(function (x) {
+        return x.vegId === vegId;
+      });
+      var curCount = (existing === null || existing === void 0 ? void 0 : existing.count) || 0;
+      var usedNow = calcUsedCm(arr, bed);
+      if (action === "add") {
+        var addLen = getLenUsed(veg, bed, curCount + 1) - (curCount > 0 ? getLenUsed(veg, bed, curCount) : 0);
+        var maxP = getMaxP(veg, bed);
+        if (curCount >= maxP || usedNow + addLen > lenCm + 2) return prev;
+        if (existing) return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, bedId, arr.map(function (x) {
+          return x.vegId === vegId ? _objectSpread(_objectSpread({}, x), {}, {
+            count: x.count + 1
+          }) : x;
+        })));
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, bedId, [].concat(_toConsumableArray(arr), [{
+          vegId: vegId,
+          varId: selectedVarieties[vegId] || null,
+          count: 1
+        }])));
+      }
+      if (action === "dec") {
+        if (!existing) return prev;
+        if (existing.count <= 1) return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, bedId, arr.filter(function (x) {
+          return x.vegId !== vegId;
+        })));
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, bedId, arr.map(function (x) {
+          return x.vegId === vegId ? _objectSpread(_objectSpread({}, x), {}, {
+            count: x.count - 1
+          }) : x;
+        })));
+      }
+      if (action === "remove") return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, bedId, arr.filter(function (x) {
+        return x.vegId !== vegId;
+      })));
+      return prev;
+    });
+  }, [beds, selectedVarieties]);
+  var _onDrop = useCallback(function (bedId, e) {
+    e.preventDefault();
+    var vegId = e.dataTransfer.getData("vegId");
+    if (vegId) modBed(bedId, "add", vegId);
+    setDragOver(null);
+  }, [modBed]);
+
+  // Per-bed conflict/companion checks
+  var getBedAlerts = function getBedAlerts(bedId) {
+    var arr = getBedContent(bedId);
+    var ids = arr.map(function (x) {
+      return x.vegId;
+    });
+    var conflicts = [],
+      goods = [];
+    for (var i = 0; i < ids.length; i++) for (var j = i + 1; j < ids.length; j++) {
+      var a = getVeg(ids[i]),
+        b = getVeg(ids[j]);
+      if (!a || !b) continue;
+      if (a.an.includes(ids[j]) || b.an.includes(ids[i])) conflicts.push([a, b]);else if (a.cp.includes(ids[j]) || b.cp.includes(ids[i])) goods.push([a, b]);
+    }
+    return {
+      conflicts: conflicts,
+      goods: goods
+    };
+  };
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83E\uDD16 \u81EA\u52D5\u914D\u7F6E"
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: "#6b5a4e",
+      margin: "0 0 10px",
+      lineHeight: 1.6
+    }
+  }, purchaseMode === "after" ? "購入済みの苗数をもとに、相性・株間・畝の容量を考慮して最適な配置を提案します。" : "選択した野菜を相性・株間・畝の容量を考慮して自動配置します（各野菜1株を想定）。"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      alignItems: "center",
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: handleAutoPlace,
+    style: {
+      padding: "10px 22px",
+      background: "#2d5a3d",
+      color: "#fff",
+      border: "none",
+      borderRadius: 8,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontSize: 13,
+      fontWeight: 600
+    }
+  }, "\u2728 \u81EA\u52D5\u914D\u7F6E\u3092\u5B9F\u884C"), autoPlaced && /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return setBedContents({});
+    },
+    style: {
+      padding: "10px 16px",
+      background: "transparent",
+      color: "#b91c1c",
+      border: "1px solid #b91c1c",
+      borderRadius: 8,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontSize: 12
+    }
+  }, "\u30EA\u30BB\u30C3\u30C8"), autoPlaced && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#15803d",
+      fontWeight: 600
+    }
+  }, "\u2713 \u914D\u7F6E\u5B8C\u4E86\uFF01\u5185\u5BB9\u3092\u78BA\u8A8D\u30FB\u8ABF\u6574\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10,
+      padding: "7px 11px",
+      background: "#f8f6f3",
+      borderRadius: 8,
+      fontSize: 11,
+      color: "#8b7355"
+    }
+  }, "\uD83D\uDCA1 \u81EA\u52D5\u914D\u7F6E\u5F8C\u3082\u624B\u52D5\u3067\u682A\u6570\u306E\u5897\u6E1B\u30FB\u79FB\u52D5\u304C\u3067\u304D\u307E\u3059\u3002\u76F8\u6027\u306E\u60AA\u3044\u7D44\u307F\u5408\u308F\u305B\u306F\u8D64\u3067\u8B66\u544A\u3057\u307E\u3059\u3002")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "190px 1fr",
+      gap: 13
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#2d5a3d",
+      marginBottom: 7
+    }
+  }, "\u91CE\u83DC\u30D1\u30EC\u30C3\u30C8"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: "#8b7355",
+      marginBottom: 8,
+      lineHeight: 1.5
+    }
+  }, "\u2460\u30AF\u30EA\u30C3\u30AF\u3067\u9078\u629E", /*#__PURE__*/React.createElement("br", null), "\u2461\u300C\uFF0B\u8FFD\u52A0\u300D\u3067\u914D\u7F6E", /*#__PURE__*/React.createElement("br", null), "\u307E\u305F\u306F\u30C9\u30E9\u30C3\u30B0\uFF06\u30C9\u30ED\u30C3\u30D7"), selVegs.map(function (v) {
+    var armed = armedVegId === v.id;
+    var placed = totalPlaced(v.id);
+    var total = vegCounts[v.id] || 1;
+    var remaining = purchaseMode === "after" ? total - placed : null;
+    var color = VEG_COLORS[v.id] || "#888";
+    return /*#__PURE__*/React.createElement("div", {
+      key: v.id,
+      draggable: true,
+      onDragStart: function onDragStart(e) {
+        e.dataTransfer.setData("vegId", v.id);
+        setArmedVegId(v.id);
+      },
+      onClick: function onClick() {
+        return setArmedVegId(armed ? null : v.id);
+      },
+      style: {
+        marginBottom: 5,
+        padding: "7px 9px",
+        borderRadius: 9,
+        border: armed ? "2px solid #2d5a3d" : "1px solid #ddd5c8",
+        background: armed ? "#e8f5ee" : "#fff",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 17
+      }
+    }, v.emoji), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        color: armed ? "#2d5a3d" : "#2c2016"
+      }
+    }, v.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: "#8b7355"
+      }
+    }, "\u682A\u9593", v.sp, "cm"), purchaseMode === "after" && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: remaining === 0 ? "#15803d" : remaining && remaining < 0 ? "#b91c1c" : "#b45309",
+        fontWeight: 600
+      }
+    }, "\u914D\u7F6E", placed, "/", total, "\u682A ", remaining === 0 ? "✓" : remaining && remaining < 0 ? "⚠️超過" : ""), purchaseMode === "before" && placed > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 9,
+        color: color,
+        fontWeight: 600
+      }
+    }, "\u914D\u7F6E\u6E08:", placed, "\u682A")), armed && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12
+      }
+    }, "\u2713"));
+  }), armedVeg && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 7,
+      padding: "6px 9px",
+      background: "#e8f5ee",
+      borderRadius: 8,
+      fontSize: 10,
+      color: "#2d5a3d",
+      border: "1px solid #c6e8d4"
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, armedVeg.emoji, " ", armedVeg.name), "\u9078\u629E\u4E2D", beds.map(function (b) {
+    return /*#__PURE__*/React.createElement("div", {
+      key: b.id,
+      style: {
+        fontSize: 9,
+        color: "#4a3728"
+      }
+    }, "\u3000", b.name, ": \u6700\u5927", getMaxP(armedVeg, b), "\u682A");
+  }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 700,
+      color: "#2d5a3d",
+      marginBottom: 7
+    }
+  }, "\u755D\u306E\u30EC\u30A4\u30A2\u30A6\u30C8"), beds.map(function (bed) {
+    var arr = getBedContent(bed.id);
+    var lenCm = bedLenCm(bed);
+    var usedCm = calcUsedCm(arr, bed);
+    var usedPct = Math.min(100, usedCm / lenCm * 100);
+    var iDragOver = dragOver === bed.id;
+    var _getBedAlerts = getBedAlerts(bed.id),
+      conflicts = _getBedAlerts.conflicts,
+      goods = _getBedAlerts.goods;
+    var canAddArmed = armedVeg && function () {
+      var ex = arr.find(function (x) {
+        return x.vegId === armedVegId;
+      });
+      var cc = (ex === null || ex === void 0 ? void 0 : ex.count) || 0;
+      var addLen = getLenUsed(armedVeg, bed, cc + 1) - (cc > 0 ? getLenUsed(armedVeg, bed, cc) : 0);
+      return cc < getMaxP(armedVeg, bed) && usedCm + addLen <= lenCm + 2;
+    }();
+    return /*#__PURE__*/React.createElement("div", {
+      key: bed.id,
+      style: {
+        marginBottom: 13,
+        padding: "11px 13px",
+        borderRadius: 10,
+        border: iDragOver ? "2px dashed #2d5a3d" : "1px solid #ddd5c8",
+        background: iDragOver ? "#e8f5ee" : "#fff"
+      },
+      onDragOver: function onDragOver(e) {
+        e.preventDefault();
+        setDragOver(bed.id);
+      },
+      onDragLeave: function onDragLeave() {
+        return setDragOver(null);
+      },
+      onDrop: function onDrop(e) {
+        return _onDrop(bed.id, e);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 7
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#2d5a3d"
+      }
+    }, bed.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8b7355"
+      }
+    }, bed.length, "m\xD7", bed.width, "m \xB7 \u6B8B\u308A", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: usedCm > lenCm ? "#b91c1c" : "#2d5a3d"
+      }
+    }, " ", Math.max(0, (lenCm - usedCm) / 100).toFixed(1), "m"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 52,
+        background: "#c8b89a",
+        borderRadius: 7,
+        overflow: "hidden",
+        display: "flex",
+        marginBottom: 7,
+        border: "1px solid #a89070"
+      }
+    }, arr.map(function (item) {
+      var v = getVeg(item.vegId);
+      if (!v) return null;
+      var lenU = getLenUsed(v, bed, item.count);
+      var wPct = Math.min(100, lenU / lenCm * 100);
+      var color = VEG_COLORS[v.id] || "#888";
+      var rows = getRows(v, bed);
+      return /*#__PURE__*/React.createElement("div", {
+        key: item.vegId,
+        style: {
+          width: "".concat(wPct, "%"),
+          minWidth: 32,
+          background: color,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRight: "2px solid rgba(255,255,255,0.4)",
+          overflow: "hidden",
+          transition: "width 0.3s"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 14,
+          lineHeight: 1
+        }
+      }, v.emoji), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 9,
+          fontWeight: 700,
+          color: "rgba(0,0,0,0.7)"
+        }
+      }, item.count, "\u682A"), rows > 1 && /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 7,
+          color: "rgba(0,0,0,0.5)"
+        }
+      }, rows, "\u5217"));
+    }), usedCm < lenCm && /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        background: "#b8a58a",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 9,
+        color: "#7a6040",
+        opacity: 0.6
+      }
+    }, "\u7A7A\u304D"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 4,
+        background: "#e8e0d5",
+        borderRadius: 3,
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: "100%",
+        width: "".concat(usedPct, "%"),
+        background: usedPct > 95 ? "#ef4444" : usedPct > 75 ? "#f59e0b" : "#2d5a3d",
+        borderRadius: 3,
+        transition: "width 0.3s"
+      }
+    })), conflicts.map(function (_ref20, i) {
+      var _ref21 = _slicedToArray(_ref20, 2),
+        a = _ref21[0],
+        b = _ref21[1];
+      return /*#__PURE__*/React.createElement(Alert, {
+        key: i,
+        color: "#b91c1c",
+        bg: "#fee2e2"
+      }, "\u26A1 ", a.emoji, a.name, " \xD7 ", b.emoji, b.name, " \u2014 \u540C\u3058\u755D\u306F\u907F\u3051\u3066\u304F\u3060\u3055\u3044");
+    }), goods.map(function (_ref22, i) {
+      var _ref23 = _slicedToArray(_ref22, 2),
+        a = _ref23[0],
+        b = _ref23[1];
+      return /*#__PURE__*/React.createElement(Alert, {
+        key: i,
+        color: "#15803d",
+        bg: "#f0fdf4"
+      }, "\uD83E\uDD1D ", a.emoji, a.name, " \xD7 ", b.emoji, b.name, " \u2014 \u76F8\u6027\u826F\u3044\u30DA\u30A2\u3067\u3059");
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5,
+        flexWrap: "wrap",
+        marginTop: 5
+      }
+    }, armedVeg && /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return canAddArmed && modBed(bed.id, "add", armedVegId);
+      },
+      disabled: !canAddArmed,
+      style: {
+        padding: "4px 10px",
+        borderRadius: 7,
+        fontSize: 11,
+        cursor: canAddArmed ? "pointer" : "not-allowed",
+        background: canAddArmed ? "#2d5a3d" : "#9fb8a8",
+        color: "#fff",
+        border: "none",
+        fontFamily: SANS,
+        fontWeight: 600
+      }
+    }, "\uFF0B ", armedVeg.emoji, armedVeg.name, "\u3092\u8FFD\u52A0", !canAddArmed ? " (上限)" : ""), arr.map(function (item) {
+      var v = getVeg(item.vegId);
+      if (!v) return null;
+      var color = VEG_COLORS[v.id] || "#888";
+      return /*#__PURE__*/React.createElement("div", {
+        key: item.vegId,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+          padding: "3px 6px",
+          borderRadius: 7,
+          background: "".concat(color, "22"),
+          border: "1px solid ".concat(color, "66")
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12
+        }
+      }, v.emoji), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 11,
+          fontWeight: 600,
+          color: "#2c2016"
+        }
+      }, item.count, "\u682A"), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return modBed(bed.id, "dec", v.id);
+        },
+        style: {
+          padding: "1px 5px",
+          borderRadius: 4,
+          border: "none",
+          background: "rgba(0,0,0,0.1)",
+          cursor: "pointer",
+          fontSize: 11,
+          fontWeight: 700
+        }
+      }, "\u2212"), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return modBed(bed.id, "add", v.id);
+        },
+        style: {
+          padding: "1px 5px",
+          borderRadius: 4,
+          border: "none",
+          background: "rgba(0,0,0,0.1)",
+          cursor: "pointer",
+          fontSize: 11,
+          fontWeight: 700
+        }
+      }, "\uFF0B"), /*#__PURE__*/React.createElement("button", {
+        onClick: function onClick() {
+          return modBed(bed.id, "remove", v.id);
+        },
+        style: {
+          padding: "1px 5px",
+          borderRadius: 4,
+          border: "none",
+          background: "rgba(0,0,0,0.08)",
+          cursor: "pointer",
+          fontSize: 10,
+          color: "#b91c1c"
+        }
+      }, "\u2715"));
+    })));
+  }), /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCCA \u914D\u7F6E\u30B5\u30DE\u30EA\u30FC"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      overflowX: "auto"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse",
+      fontSize: 11
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      borderBottom: "1px solid #e8e0d5"
+    }
+  }, /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: "3px 5px",
+      textAlign: "left",
+      color: "#6b5a4e",
+      fontWeight: 600
+    }
+  }, "\u91CE\u83DC"), beds.map(function (b) {
+    return /*#__PURE__*/React.createElement("th", {
+      key: b.id,
+      style: {
+        padding: "3px 5px",
+        textAlign: "center",
+        color: "#6b5a4e",
+        fontWeight: 600
+      }
+    }, b.name);
+  }), /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: "3px 5px",
+      textAlign: "center",
+      color: "#6b5a4e",
+      fontWeight: 600
+    }
+  }, "\u5408\u8A08"), purchaseMode === "after" && /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: "3px 5px",
+      textAlign: "center",
+      color: "#6b5a4e",
+      fontWeight: 600
+    }
+  }, "\u8CFC\u5165\u6570"), purchaseMode === "after" && /*#__PURE__*/React.createElement("th", {
+    style: {
+      padding: "3px 5px",
+      textAlign: "center",
+      color: "#6b5a4e",
+      fontWeight: 600
+    }
+  }, "\u672A\u914D\u7F6E"))), /*#__PURE__*/React.createElement("tbody", null, selVegs.map(function (v) {
+    var counts = beds.map(function (b) {
+      var _getBedContent$find;
+      return ((_getBedContent$find = getBedContent(b.id).find(function (x) {
+        return x.vegId === v.id;
+      })) === null || _getBedContent$find === void 0 ? void 0 : _getBedContent$find.count) || 0;
+    });
+    var total = counts.reduce(function (s, c) {
+      return s + c;
+    }, 0);
+    var purchased = vegCounts[v.id] || 1;
+    var remaining = purchaseMode === "after" ? purchased - total : null;
+    return /*#__PURE__*/React.createElement("tr", {
+      key: v.id,
+      style: {
+        borderBottom: "1px solid #f0ebe4"
+      }
+    }, /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "3px 5px",
+        fontWeight: 600
+      }
+    }, v.emoji, " ", v.name), counts.map(function (c, i) {
+      return /*#__PURE__*/React.createElement("td", {
+        key: i,
+        style: {
+          padding: "3px 5px",
+          textAlign: "center",
+          color: c > 0 ? "#2d5a3d" : "#ccc",
+          fontWeight: c > 0 ? 600 : 400
+        }
+      }, c > 0 ? "".concat(c, "\u682A") : "—");
+    }), /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "3px 5px",
+        textAlign: "center",
+        fontWeight: 700,
+        color: total > 0 ? "#2d5a3d" : "#ccc"
+      }
+    }, total > 0 ? "".concat(total, "\u682A") : "未配置"), purchaseMode === "after" && /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "3px 5px",
+        textAlign: "center",
+        color: "#b45309",
+        fontWeight: 600
+      }
+    }, purchased, "\u682A"), purchaseMode === "after" && /*#__PURE__*/React.createElement("td", {
+      style: {
+        padding: "3px 5px",
+        textAlign: "center",
+        fontWeight: 700,
+        color: remaining === 0 ? "#15803d" : remaining < 0 ? "#b91c1c" : "#8b7355"
+      }
+    }, remaining === 0 ? "✓完了" : remaining < 0 ? "".concat(Math.abs(remaining), "\u8D85\u904E") : "\u6B8B".concat(remaining, "\u682A")));
+  }))))))), /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      background: "transparent",
+      color: "#2d5a3d",
+      border: "2px solid #2d5a3d",
+      borderRadius: 8,
+      padding: "9px 18px",
+      fontSize: 12,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u2190 \u30D7\u30E9\u30F3\u306B\u623B\u308B"));
+}
+
+// ─── MAIN ─────────────────────────────────────────────────────────────────────
+function GardenApp() {
+  var _useState1 = useState(1),
+    _useState10 = _slicedToArray(_useState1, 2),
+    step = _useState10[0],
+    setStep = _useState10[1];
+  var _useState11 = useState(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    region = _useState12[0],
+    setRegion = _useState12[1];
+  var _useState13 = useState(defaultBeds),
+    _useState14 = _slicedToArray(_useState13, 2),
+    beds = _useState14[0],
+    setBeds = _useState14[1];
+  var _useState15 = useState(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    orientation = _useState16[0],
+    setOrientation = _useState16[1];
+  var _useState17 = useState(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    shade = _useState18[0],
+    setShade = _useState18[1];
+  var _useState19 = useState("beginner"),
+    _useState20 = _slicedToArray(_useState19, 2),
+    experience = _useState20[0],
+    setExperience = _useState20[1];
+  var _useState21 = useState([]),
+    _useState22 = _slicedToArray(_useState21, 2),
+    pastFams = _useState22[0],
+    setPastFams = _useState22[1];
+  var _useState23 = useState("ss"),
+    _useState24 = _slicedToArray(_useState23, 2),
+    season = _useState24[0],
+    setSeason = _useState24[1];
+  var _useState25 = useState([]),
+    _useState26 = _slicedToArray(_useState25, 2),
+    selected = _useState26[0],
+    setSelected = _useState26[1];
+  var _useState27 = useState({}),
+    _useState28 = _slicedToArray(_useState27, 2),
+    selectedVarieties = _useState28[0],
+    setSelectedVarieties = _useState28[1];
+  var _useState29 = useState("before"),
+    _useState30 = _slicedToArray(_useState29, 2),
+    purchaseMode = _useState30[0],
+    setPurchaseMode = _useState30[1];
+  var _useState31 = useState({}),
+    _useState32 = _slicedToArray(_useState31, 2),
+    vegCounts = _useState32[0],
+    setVegCounts = _useState32[1];
+  var _useState33 = useState({}),
+    _useState34 = _slicedToArray(_useState33, 2),
+    bedContents = _useState34[0],
+    setBedContents = _useState34[1];
+  var toggleVeg = function toggleVeg(id) {
+    var v = getVeg(id);
+    if (!v || v.d > EXP_MAX[experience]) return;
+    setSelected(function (p) {
+      if (p.includes(id)) {
+        setBedContents(function (prev) {
+          var next = {};
+          for (var _i2 = 0, _Object$entries = Object.entries(prev); _i2 < _Object$entries.length; _i2++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+              bid = _Object$entries$_i[0],
+              arr = _Object$entries$_i[1];
+            next[bid] = arr.filter(function (x) {
+              return x.vegId !== id;
+            });
+          }
+          return next;
+        });
+        return p.filter(function (x) {
+          return x !== id;
+        });
+      }
+      return [].concat(_toConsumableArray(p), [id]);
+    });
+  };
+  var toggleFam = function toggleFam(f) {
+    return setPastFams(function (p) {
+      return p.includes(f) ? p.filter(function (x) {
+        return x !== f;
+      }) : [].concat(_toConsumableArray(p), [f]);
+    });
+  };
+  var can = {
+    2: !!region,
+    3: !!region && selected.length > 0,
+    4: !!region && selected.length > 0
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: "100vh",
+      background: "#f5f0e8",
+      color: "#2c2016",
+      fontFamily: SANS
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "#2d5a3d",
+      padding: "13px 18px",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 20
+    }
+  }, "\uD83C\uDF31"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontFamily: SERIF,
+      fontSize: 18,
+      fontWeight: 700,
+      color: "#e8f5ee",
+      margin: "3px 0",
+      letterSpacing: "0.04em"
+    }
+  }, "\u5BB6\u5EAD\u83DC\u5712\u30D7\u30E9\u30F3\u30CA\u30FC"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 11,
+      color: "#7fcca0",
+      margin: 0
+    }
+  }, "\u5730\u57DF\u30FB\u755D\u30FB\u7D4C\u9A13\u5024\u306B\u3042\u308F\u305B\u305F\u683D\u57F9\u30D7\u30E9\u30F3\u3068\u533A\u753B\u30EC\u30A4\u30A2\u30A6\u30C8")), /*#__PURE__*/React.createElement(StepBar, {
+    step: step,
+    setStep: setStep,
+    can: can
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 900,
+      margin: "0 auto",
+      padding: "16px 13px 40px"
+    }
+  }, step === 1 && /*#__PURE__*/React.createElement(Step1, {
+    region: region,
+    setRegion: setRegion,
+    beds: beds,
+    setBeds: setBeds,
+    orientation: orientation,
+    setOrientation: setOrientation,
+    shade: shade,
+    setShade: setShade,
+    experience: experience,
+    setExperience: setExperience,
+    pastFams: pastFams,
+    toggleFam: toggleFam,
+    onNext: function onNext() {
+      return setStep(2);
+    }
+  }), step === 2 && /*#__PURE__*/React.createElement(Step2, {
+    season: season,
+    setSeason: setSeason,
+    selected: selected,
+    toggleVeg: toggleVeg,
+    experience: experience,
+    selectedVarieties: selectedVarieties,
+    setSelectedVarieties: setSelectedVarieties,
+    purchaseMode: purchaseMode,
+    setPurchaseMode: setPurchaseMode,
+    vegCounts: vegCounts,
+    setVegCounts: setVegCounts,
+    onBack: function onBack() {
+      return setStep(1);
+    },
+    onNext: function onNext() {
+      return setStep(3);
+    }
+  }), step === 3 && /*#__PURE__*/React.createElement(Step3, {
+    region: region,
+    beds: beds,
+    orientation: orientation,
+    shade: shade,
+    experience: experience,
+    selected: selected,
+    season: season,
+    selectedVarieties: selectedVarieties,
+    pastFams: pastFams,
+    onBack: function onBack() {
+      return setStep(2);
+    },
+    onNext: function onNext() {
+      return setStep(4);
+    }
+  }), step === 4 && /*#__PURE__*/React.createElement(Step4, {
+    beds: beds,
+    selected: selected,
+    selectedVarieties: selectedVarieties,
+    purchaseMode: purchaseMode,
+    vegCounts: vegCounts,
+    bedContents: bedContents,
+    setBedContents: setBedContents,
+    onBack: function onBack() {
+      return setStep(3);
+    }
+  })));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(GardenApp));
+</script>
+</body>
+</html>
