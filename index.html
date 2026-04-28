@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -162,6 +163,21 @@ var FAMILIES = {
     name: "サトイモ科",
     years: 3,
     color: "#78350f"
+  },
+  zingiberaceae: {
+    name: "ショウガ科",
+    years: 3,
+    color: "#92400e"
+  },
+  passifloraceae: {
+    name: "トケイソウ科",
+    years: 2,
+    color: "#7e22ce"
+  },
+  arachis: {
+    name: "マメ科",
+    years: 2,
+    color: "#1d4ed8"
   }
 };
 var VEGETABLES = [
@@ -283,7 +299,7 @@ var VEGETABLES = [
 }, {
   id: "jalapeno",
   name: "ハラペーニョ",
-  emoji: "🫑",
+  emoji: "🌶️",
   s: "ss",
   fam: "solanaceae",
   d: 2,
@@ -381,7 +397,7 @@ var VEGETABLES = [
 }, {
   id: "bitter-gourd",
   name: "ゴーヤ",
-  emoji: "🍵",
+  emoji: "🍃",
   s: "ss",
   fam: "cucurbitaceae",
   d: 1,
@@ -413,7 +429,7 @@ var VEGETABLES = [
 }, {
   id: "zucchini",
   name: "ズッキーニ",
-  emoji: "🥬",
+  emoji: "🫛",
   s: "ss",
   fam: "cucurbitaceae",
   d: 2,
@@ -784,7 +800,7 @@ var VEGETABLES = [
   id: "potato",
   name: "ジャガイモ",
   emoji: "🥔",
-  s: "aw",
+  s: "ss",
   fam: "solanaceae",
   d: 2,
   w: "medium",
@@ -796,6 +812,106 @@ var VEGETABLES = [
   cp: ["beans"],
   an: ["tomato", "cherry-tomato", "eggplant", "pepper"],
   tips: "ナス科なので連作注意。"
+},
+// ── 追加春夏野菜 ────────────────────────────────────────────────────────
+{
+  id: "melon",
+  name: "メロン",
+  emoji: "🍈",
+  s: "ss",
+  fam: "cucurbitaceae",
+  d: 5,
+  w: "medium",
+  sp: 150,
+  gt: "vertical",
+  mt: "late",
+  pm: [4, 5],
+  hm: [7, 8],
+  cp: [],
+  an: [],
+  tips: "温度・水・整枝の管理が難しい上級者向き。"
+}, {
+  id: "ginger",
+  name: "ショウガ",
+  emoji: "🫚",
+  s: "ss",
+  fam: "zingiberaceae",
+  d: 2,
+  w: "high",
+  sp: 20,
+  gt: "ground",
+  mt: "late",
+  pm: [4, 5],
+  hm: [10, 11],
+  cp: ["eggplant"],
+  an: [],
+  tips: "半日陰でも育つ。ナスと混植で害虫防除効果。"
+}, {
+  id: "peanut",
+  name: "落花生",
+  emoji: "🥜",
+  s: "ss",
+  fam: "leguminosae",
+  d: 2,
+  w: "medium",
+  sp: 30,
+  gt: "ground",
+  mt: "late",
+  pm: [4, 5, 6],
+  hm: [9, 10],
+  cp: ["corn"],
+  an: [],
+  tips: "子房柄（ペグ）が土に潜って実る。土は柔らかく。"
+}, {
+  id: "winged-bean",
+  name: "四角豆",
+  emoji: "🫘",
+  s: "ss",
+  fam: "leguminosae",
+  d: 2,
+  w: "medium",
+  sp: 50,
+  gt: "vertical",
+  mt: "mid",
+  pm: [5, 6],
+  hm: [8, 9, 10],
+  cp: [],
+  an: [],
+  tips: "高温に強い。支柱・ネット必要。沖縄原産。"
+}, {
+  id: "passionfruit",
+  name: "パッションフルーツ",
+  emoji: "🌺",
+  s: "ss",
+  fam: "passifloraceae",
+  d: 3,
+  w: "medium",
+  sp: 100,
+  gt: "vertical",
+  mt: "late",
+  pm: [4, 5],
+  hm: [7, 8, 9],
+  cp: [],
+  an: [],
+  tips: "棚・フェンスに誘引。人工授粉推奨。越冬注意。"
+},
+// ── 追加秋冬野菜 ────────────────────────────────────────────────────────
+{
+  id: "celery",
+  name: "セロリ",
+  emoji: "🌿",
+  s: "aw",
+  fam: "apiaceae",
+  d: 4,
+  w: "high",
+  sp: 40,
+  gt: "vertical",
+  mt: "late",
+  pm: [8, 9],
+  hm: [12, 1, 2],
+  cp: ["leek", "garlic"],
+  an: [],
+  tips: "多湿・半日陰好き。軟白栽培で香りをやわらげる。"
 }, {
   id: "burdock",
   name: "ゴボウ",
@@ -1168,6 +1284,77 @@ var VARIETIES = {
     mt: "early",
     notes: "黄色肉・甘み強い"
   }],
+  melon: [{
+    id: "earl",
+    name: "アールスフェボリット",
+    maker: "タキイ",
+    mt: "late",
+    notes: "網目美しい・高級メロンの定番"
+  }, {
+    id: "crown",
+    name: "クラウンメロン",
+    maker: "各社",
+    mt: "late",
+    notes: "静岡の最高級品種"
+  }, {
+    id: "andesu",
+    name: "アンデスメロン",
+    maker: "サカタ",
+    mt: "late",
+    notes: "家庭菜園向け・作りやすい"
+  }],
+  ginger: [{
+    id: "ougon",
+    name: "黄金しょうが",
+    maker: "各社",
+    mt: "late",
+    notes: "辛みおだやか・料理万能"
+  }, {
+    id: "kintoki",
+    name: "金時しょうが",
+    maker: "各社",
+    mt: "late",
+    notes: "高知の伝統品種・繊維少"
+  }],
+  peanut: [{
+    id: "chibahandachi",
+    name: "千葉半立",
+    maker: "各社",
+    mt: "late",
+    notes: "千葉の定番・コクが強い"
+  }, {
+    id: "okayama",
+    name: "おおまさり",
+    maker: "各社",
+    mt: "late",
+    notes: "大粒・ゆで落花生向け"
+  }],
+  passionfruit: [{
+    id: "purple",
+    name: "パープルパッション",
+    maker: "各社",
+    mt: "late",
+    notes: "甘酸っぱい・定番品種"
+  }, {
+    id: "yellow",
+    name: "イエローパッション",
+    maker: "各社",
+    mt: "late",
+    notes: "熱帯系・より甘い"
+  }],
+  celery: [{
+    id: "cornell",
+    name: "コーネル619",
+    maker: "タキイ",
+    mt: "late",
+    notes: "節間が短く太い・定番"
+  }, {
+    id: "utah",
+    name: "ユタ52-70",
+    maker: "サカタ",
+    mt: "late",
+    notes: "軟白しやすい"
+  }],
   hakusai: [{
     id: "musou",
     name: "無双",
@@ -1224,7 +1411,13 @@ var VEG_COLORS = {
   "peas": "#6ee7b7",
   "green-onion": "#a3e635",
   "potato": "#d4a27a",
-  "burdock": "#a16207"
+  "burdock": "#a16207",
+  "melon": "#bef264",
+  "ginger": "#f59e0b",
+  "peanut": "#d97706",
+  "winged-bean": "#22d3ee",
+  "passionfruit": "#c084fc",
+  "celery": "#86efac"
 };
 var getVeg = function getVeg(id) {
   return VEGETABLES.find(function (v) {
@@ -1471,6 +1664,292 @@ function generateSuggestions(beds, selected) {
   });
   return suggestions;
 }
+
+// ─── SCHEDULE DATA ─────────────────────────────────────────────────────────────
+var SCHEDULES = {
+  tomato: {
+    plant: "4〜5月（地温15℃以上）",
+    fertilize: "植付2週後から3〜4週おき",
+    harvest: "7〜9月（開花後50〜60日）",
+    notes: ["わき芽かきを週1回", "支柱は早めに立てる", "水は朝に株元へ", "梅雨明け後は乾燥に注意"]
+  },
+  "cherry-tomato": {
+    plant: "4〜5月",
+    fertilize: "3〜4週おき（少量でOK）",
+    harvest: "6〜9月",
+    notes: ["放任でも育つ", "摘葉で風通しよく", "鈴なりになったら水やり控えめで甘みアップ"]
+  },
+  cucumber: {
+    plant: "4〜5月（地温18℃以上）",
+    fertilize: "植付2週後から2週おき",
+    harvest: "6〜8月（開花後7〜10日）",
+    notes: ["水切れ厳禁・毎日チェック", "ネットに誘引", "うどん粉病に注意", "取り遅れると種が固くなる"]
+  },
+  eggplant: {
+    plant: "4〜5月",
+    fertilize: "2〜3週おきに多めに",
+    harvest: "7〜10月",
+    notes: ["水・肥料を切らさない", "更新剪定で秋ナス収穫", "石ナスになったら即収穫"]
+  },
+  pepper: {
+    plant: "4〜5月",
+    fertilize: "3〜4週おき",
+    harvest: "7〜10月",
+    notes: ["整枝で3本仕立て", "カメムシに注意", "秋まで長く収穫できる"]
+  },
+  shishito: {
+    plant: "4〜5月",
+    fertilize: "3週おき",
+    harvest: "6〜9月",
+    notes: ["放任でよく実る", "風通し確保", "辛いものが混じることがある"]
+  },
+  togarashi: {
+    plant: "4〜5月",
+    fertilize: "月1回程度",
+    harvest: "8〜11月（赤くなってから）",
+    notes: ["乾燥気味が好き", "放任でよく実る", "収穫後は逆さに吊るして乾燥保存"]
+  },
+  jalapeno: {
+    plant: "4〜5月",
+    fertilize: "3〜4週おき",
+    harvest: "7〜10月（緑色で収穫）",
+    notes: ["ピーマンと同様の管理", "辛みを抑えたいなら早めに収穫", "完熟赤でも使えるが辛みが増す"]
+  },
+  cayenne: {
+    plant: "4〜5月",
+    fertilize: "月1回程度",
+    harvest: "8〜10月",
+    notes: ["乾燥させて粉末に", "支柱があると安心", "完全に赤くなってから収穫"]
+  },
+  corn: {
+    plant: "4〜5月（直播き）",
+    fertilize: "草丈50cm時と穂が出た時",
+    harvest: "7〜8月（絹糸が茶色になってから）",
+    notes: ["複数列で風媒受粉", "1株1穂に絞ると大きい", "収穫後は即調理で甘みが逃げない"]
+  },
+  edamame: {
+    plant: "4〜6月（直播き）",
+    fertilize: "花が咲いたら1回",
+    harvest: "7〜9月（莢がふっくらしたら）",
+    notes: ["根粒菌のため窒素肥料は控えめ", "水切れに注意（花・莢つき期）", "一気に収穫して塩茹ですること"]
+  },
+  okra: {
+    plant: "5〜6月（地温20℃以上）",
+    fertilize: "2〜3週おき",
+    harvest: "7〜10月（5〜7cmで収穫）",
+    notes: ["取り遅れると硬くなる", "毎日チェック必要", "葉・茎に刺があるので手袋を"]
+  },
+  beans: {
+    plant: "4〜5月（直播き）",
+    fertilize: "花が咲いたら1回",
+    harvest: "6〜8月（莢がまだ柔らかいうちに）",
+    notes: ["蒔き時を守る（遅れると収量減）", "根粒菌あり、窒素少なめ", "一度に多く採れるので保存法を考えておく"]
+  },
+  "bitter-gourd": {
+    plant: "4〜5月",
+    fertilize: "2〜3週おき",
+    harvest: "7〜9月（濃緑色で収穫）",
+    notes: ["ネット・棚に誘引", "黄色くなると苦みが増す", "雄花・雌花の区別を確認"]
+  },
+  pumpkin: {
+    plant: "4〜5月",
+    fertilize: "着果後に1回",
+    harvest: "7〜9月（ヘタが枯れてから）",
+    notes: ["人工授粉で確実に", "1株2〜3個に絞る", "収穫後2週間追熟させると甘くなる"]
+  },
+  zucchini: {
+    plant: "4〜5月",
+    fertilize: "2〜3週おき",
+    harvest: "6〜8月（20cm程度で収穫）",
+    notes: ["人工授粉が確実", "取り遅れ厳禁（巨大化する）", "雌花を確認してから人工授粉"]
+  },
+  "sweet-potato": {
+    plant: "5〜6月（苗を寝かせて植える）",
+    fertilize: "基本不要（多肥は蔓ぼけ）",
+    harvest: "9〜10月（蔓が枯れ始めたら）",
+    notes: ["肥料は控えめ", "試し掘りで確認", "収穫後1週間追熟で甘みアップ"]
+  },
+  shiso: {
+    plant: "4〜5月",
+    fertilize: "月1回程度",
+    harvest: "6〜10月（随時）",
+    notes: ["花穂が出たら摘む", "こぼれ種で翌年も生える", "半日陰でも育つ"]
+  },
+  basil: {
+    plant: "5〜6月（地温18℃以上）",
+    fertilize: "月1回程度",
+    harvest: "6〜9月（随時摘み取り）",
+    notes: ["花穂は早めに摘む", "水切れに注意", "黒ずんだ葉は病気のサイン"]
+  },
+  moroheiya: {
+    plant: "5〜6月",
+    fertilize: "月1回程度",
+    harvest: "7〜9月（随時）",
+    notes: ["種・蕾・花・莢は毒あり（食べない）", "若い葉と茎のみ食用", "茹でてヌメリを出して使う"]
+  },
+  melon: {
+    plant: "4〜5月",
+    fertilize: "着果後に1〜2回",
+    harvest: "7〜8月（開花後45〜50日）",
+    notes: ["子蔓2本仕立てが基本", "人工授粉は必須", "1株2〜4個に絞る", "ネットが出てきたら水やり控えめ"]
+  },
+  ginger: {
+    plant: "4〜5月（地温18℃以上）",
+    fertilize: "月1回程度",
+    harvest: "10〜11月（葉が枯れてから）",
+    notes: ["乾燥に弱い・マルチ推奨", "半日陰が好き", "ナスの株元に植えると互いに良い"]
+  },
+  peanut: {
+    plant: "4〜6月（直播き）",
+    fertilize: "花が咲いたら1回",
+    harvest: "9〜10月（葉が黄色くなったら）",
+    notes: ["花が咲いたら周りをほぐしておく", "子房柄が土に潜って実る", "収穫後はよく乾燥させる"]
+  },
+  "winged-bean": {
+    plant: "5〜6月（地温20℃以上）",
+    fertilize: "月1回程度",
+    harvest: "8〜10月",
+    notes: ["支柱・ネット必須", "高温・短日で着花", "若莢・花・葉・根すべて食べられる"]
+  },
+  passionfruit: {
+    plant: "4〜5月",
+    fertilize: "月1〜2回（開花期は多めに）",
+    harvest: "7〜9月（自然落下が完熟のサイン）",
+    notes: ["棚かフェンスに誘引", "人工授粉で確実着果", "寒さに弱い（10℃以下で落葉）"]
+  },
+  taro: {
+    plant: "4〜5月",
+    fertilize: "月1回程度",
+    harvest: "10〜11月",
+    notes: ["乾燥厳禁・マルチ推奨", "子芋・孫芋ほど美味しい", "茎（ずいき）も食べられる"]
+  },
+  daikon: {
+    plant: "8〜9月（直播き）",
+    fertilize: "間引き後2〜3週おき",
+    harvest: "11〜1月",
+    notes: ["深く耕す（50cm以上）", "間引きを3回に分けて行う", "「す」が入る前に収穫"]
+  },
+  hakusai: {
+    plant: "8〜9月",
+    fertilize: "植付2週後から2週おき",
+    harvest: "11〜1月（結球したら）",
+    notes: ["早まき・遅まきは結球しない", "防虫ネット必須", "霜にあたると甘みが増す"]
+  },
+  cabbage: {
+    plant: "8〜9月",
+    fertilize: "植付2週後から3週おき",
+    harvest: "11〜3月",
+    notes: ["モンシロチョウの幼虫に注意", "防虫ネット推奨", "収穫は朝が美味しい"]
+  },
+  broccoli: {
+    plant: "8〜9月",
+    fertilize: "植付2週後から3週おき",
+    harvest: "11〜2月",
+    notes: ["頂花蕾は締まっているうちに収穫", "側枝も収穫できる", "アオムシ・コナガに注意"]
+  },
+  spinach: {
+    plant: "9〜10月",
+    fertilize: "本葉2〜3枚のころ1回",
+    harvest: "11〜2月（草丈20cmで）",
+    notes: ["酸性土壌が苦手・石灰必須", "発芽に光が必要（浅播き）", "霜に当たると甘くなる"]
+  },
+  komatsuna: {
+    plant: "9〜10月",
+    fertilize: "間引き後1回",
+    harvest: "10〜1月（草丈20cmで）",
+    notes: ["最も育てやすい葉物", "虫（アブラムシ・コナガ）に注意", "間引き菜も美味しく食べられる"]
+  },
+  carrot: {
+    plant: "7〜8月（直播き）",
+    fertilize: "間引き後2回",
+    harvest: "11〜1月",
+    notes: ["発芽まで絶対に乾燥させない", "間引きを徹底（密植は細くなる）", "霜に当たると甘くなる"]
+  },
+  leek: {
+    plant: "3〜4月（苗）",
+    fertilize: "月1回＋土寄せ時",
+    harvest: "10〜2月",
+    notes: ["土寄せで白根を伸ばす", "病害に強い", "コンパニオンプランツとして優秀"]
+  },
+  onion: {
+    plant: "10〜11月（苗）",
+    fertilize: "越冬後の春に2回",
+    harvest: "5〜6月（葉が倒れたら）",
+    notes: ["極早・早・晩生で連続収穫", "とう立ちに注意（大苗は危険）", "収穫後は乾燥させて保存"]
+  },
+  garlic: {
+    plant: "10〜11月（1片ずつ）",
+    fertilize: "越冬後の春に2回",
+    harvest: "5〜6月（葉が枯れてきたら）",
+    notes: ["1片ずつ分けて植える", "スケープ（花茎）は切り取る", "乾燥・冷暗所で長期保存可"]
+  },
+  lettuce: {
+    plant: "9〜10月",
+    fertilize: "植付2週後から2〜3週おき",
+    harvest: "11〜12月（結球したら）",
+    notes: ["高温でとう立ち（春まきは不向き）", "光が必要・日当たり確保", "リーフレタスは随時摘み取り"]
+  },
+  cauliflower: {
+    plant: "8〜9月",
+    fertilize: "植付2週後から3週おき",
+    harvest: "11〜2月",
+    notes: ["花蕾が出たら葉で包む", "タイミングがシビア（遅れると色が変わる）", "キャベツより難しい"]
+  },
+  turnip: {
+    plant: "9〜10月（直播き）",
+    fertilize: "間引き後1回",
+    harvest: "11〜12月（直径5〜7cmで）",
+    notes: ["成長が早い（1〜2か月で収穫）", "密植すると根が肥大しない", "葉も食べられる"]
+  },
+  chrysanthemum: {
+    plant: "9〜10月（直播き）",
+    fertilize: "月1回程度",
+    harvest: "11〜1月（随時摘み取り）",
+    notes: ["10cmほどで摘み取る", "香りが害虫忌避に", "繰り返し収穫できる"]
+  },
+  bokchoy: {
+    plant: "9〜10月",
+    fertilize: "月1回程度",
+    harvest: "11〜12月（草丈20cmで）",
+    notes: ["アブラムシ注意", "防虫ネット効果的", "秋まきがおすすめ"]
+  },
+  mizuna: {
+    plant: "9〜10月",
+    fertilize: "間引き後1回",
+    harvest: "11〜1月（随時）",
+    notes: ["霜に強く冬も収穫可", "摘み取り収穫で長く楽しむ", "サラダ・鍋に万能"]
+  },
+  peas: {
+    plant: "10〜11月（直播き）",
+    fertilize: "越冬後に2回",
+    harvest: "4〜6月（莢がふっくらしたら）",
+    notes: ["越冬させる（本葉2〜3枚で冬越し）", "支柱・ネット必須", "根粒菌あり・窒素少なめ"]
+  },
+  "green-onion": {
+    plant: "9〜10月",
+    fertilize: "月1回程度",
+    harvest: "通年（草丈20cmから随時）",
+    notes: ["根を少し残せば再生", "プランターでも育てやすい", "薬味として毎日使える"]
+  },
+  potato: {
+    plant: "2〜3月（種芋を切って植える）",
+    fertilize: "芽が出たら1回、その後2週後",
+    harvest: "6〜7月（葉が枯れてから）",
+    notes: ["芽かき（1株2本に絞る）", "土寄せ2〜3回", "緑化した芋は毒（食べない）", "秋作もあり（8〜9月植付け）"]
+  },
+  burdock: {
+    plant: "8〜9月（直播き）",
+    fertilize: "月1回程度",
+    harvest: "12〜2月",
+    notes: ["深く耕す（60cm以上）または短根品種を選ぶ", "間引きをしっかりと", "収穫は土を丁寧に掘り起こす"]
+  },
+  celery: {
+    plant: "8〜9月",
+    fertilize: "2〜3週おきに多めに",
+    harvest: "12〜2月（随時外葉から）",
+    notes: ["水・肥料を切らさない", "軟白栽培（遮光）で香りをやわらげる", "乾燥厳禁"]
+  }
+};
 
 // ─── SHARED UI ────────────────────────────────────────────────────────────────
 function Card(_ref7) {
@@ -3594,60 +4073,313 @@ function Step4(_ref19) {
   }, "\u2190 \u30D7\u30E9\u30F3\u306B\u623B\u308B"));
 }
 
+// ─── STEP 5: SCHEDULE TAB ─────────────────────────────────────────────────────
+function Step5(_ref24) {
+  var selected = _ref24.selected,
+    selectedVarieties = _ref24.selectedVarieties,
+    onBack = _ref24.onBack;
+  var selVegs = selected.map(getVeg).filter(Boolean);
+  var _useState1 = useState(null),
+    _useState10 = _slicedToArray(_useState1, 2),
+    openId = _useState10[0],
+    setOpenId = _useState10[1];
+  if (selVegs.length === 0) return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCC6 \u683D\u57F9\u30B9\u30B1\u30B8\u30E5\u30FC\u30EB"
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13,
+      color: "#8b7355"
+    }
+  }, "\u30B9\u30C6\u30C3\u30D72\u3067\u91CE\u83DC\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      background: "transparent",
+      color: "#2d5a3d",
+      border: "2px solid #2d5a3d",
+      borderRadius: 8,
+      padding: "9px 18px",
+      fontSize: 12,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u2190 \u623B\u308B"));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Card, {
+    title: "\uD83D\uDCC6 \u683D\u57F9\u30B9\u30B1\u30B8\u30E5\u30FC\u30EB"
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 12,
+      color: "#8b7355",
+      margin: "0 0 12px",
+      lineHeight: 1.6
+    }
+  }, "\u9078\u629E\u3057\u305F\u91CE\u83DC\u3054\u3068\u306E\u690D\u3048\u4ED8\u3051\u30FB\u8FFD\u80A5\u30FB\u53CE\u7A6B\u30FB\u7559\u610F\u70B9\u3092\u307E\u3068\u3081\u3066\u3044\u307E\u3059\u3002\u30AB\u30FC\u30C9\u3092\u30BF\u30C3\u30D7\u3059\u308B\u3068\u8A73\u7D30\u304C\u958B\u304D\u307E\u3059\u3002"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, selVegs.map(function (v) {
+    var _VARIETIES$v$id4, _FAMILIES$v$fam2;
+    var sch = SCHEDULES[v.id];
+    var fam = FAMILIES[v.fam];
+    var varId = selectedVarieties[v.id];
+    var varName = varId ? (_VARIETIES$v$id4 = VARIETIES[v.id]) === null || _VARIETIES$v$id4 === void 0 || (_VARIETIES$v$id4 = _VARIETIES$v$id4.find(function (x) {
+      return x.id === varId;
+    })) === null || _VARIETIES$v$id4 === void 0 ? void 0 : _VARIETIES$v$id4.name : null;
+    var isOpen = openId === v.id;
+    var color = VEG_COLORS[v.id] || "#888";
+    return /*#__PURE__*/React.createElement("div", {
+      key: v.id,
+      style: {
+        borderRadius: 10,
+        border: "2px solid ".concat(isOpen ? color : "#e8e0d5"),
+        overflow: "hidden",
+        transition: "border-color 0.15s"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setOpenId(isOpen ? null : v.id);
+      },
+      style: {
+        width: "100%",
+        padding: "11px 14px",
+        background: isOpen ? "".concat(color, "18") : "#fafaf8",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: SANS,
+        textAlign: "left",
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22
+      }
+    }, v.emoji), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        fontSize: 13,
+        color: "#2c2016"
+      }
+    }, v.name), varName && /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11,
+        color: "#2d5a3d",
+        fontWeight: 600
+      }
+    }, "\u25B6 ", varName), /*#__PURE__*/React.createElement(Tag, {
+      color: (fam === null || fam === void 0 ? void 0 : fam.color) || "#888"
+    }, fam === null || fam === void 0 ? void 0 : fam.name)), sch && !isOpen && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#8b7355",
+        marginTop: 2
+      }
+    }, "\uD83C\uDF31 ", sch.plant, " \uFF0F \uD83E\uDDFA ", sch.harvest)), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14,
+        color: color,
+        fontWeight: 700
+      }
+    }, isOpen ? "▲" : "▼")), isOpen && sch && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 14px",
+        background: "#fff",
+        borderTop: "1px solid ".concat(color, "33")
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 10,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "9px 11px",
+        background: "#f0fdf4",
+        borderRadius: 8,
+        border: "1px solid #bbf7d0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#15803d",
+        fontWeight: 700,
+        marginBottom: 4
+      }
+    }, "\uD83C\uDF31 \u690D\u3048\u4ED8\u3051"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#2c2016",
+        lineHeight: 1.6
+      }
+    }, sch.plant)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "9px 11px",
+        background: "#fffbeb",
+        borderRadius: 8,
+        border: "1px solid #fde68a"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#b45309",
+        fontWeight: 700,
+        marginBottom: 4
+      }
+    }, "\uD83C\uDF3F \u8FFD\u80A5"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#2c2016",
+        lineHeight: 1.6
+      }
+    }, sch.fertilize)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "9px 11px",
+        background: "#fff7ed",
+        borderRadius: 8,
+        border: "1px solid #fed7aa"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#c2410c",
+        fontWeight: 700,
+        marginBottom: 4
+      }
+    }, "\uD83E\uDDFA \u53CE\u7A6B"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#2c2016",
+        lineHeight: 1.6
+      }
+    }, sch.harvest)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "9px 11px",
+        background: "#eff6ff",
+        borderRadius: 8,
+        border: "1px solid #bfdbfe"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "#1d4ed8",
+        fontWeight: 700,
+        marginBottom: 4
+      }
+    }, "\uD83D\uDCA1 \u7559\u610F\u70B9"), /*#__PURE__*/React.createElement("ul", {
+      style: {
+        margin: 0,
+        paddingLeft: 14
+      }
+    }, sch.notes.map(function (n, i) {
+      return /*#__PURE__*/React.createElement("li", {
+        key: i,
+        style: {
+          fontSize: 11,
+          color: "#2c2016",
+          lineHeight: 1.7
+        }
+      }, n);
+    })))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "#6b5a4e",
+        borderTop: "1px solid #f0ebe4",
+        paddingTop: 8
+      }
+    }, "\uD83D\uDCA7 \u6C34\u3084\u308A: ", WATER_L[v.w], " \uFF0F \u682A\u9593: ", v.sp, "cm \uFF0F ", GT_L[v.gt], " \uFF0F \u9023\u4F5C\u56DE\u907F: ", (_FAMILIES$v$fam2 = FAMILIES[v.fam]) === null || _FAMILIES$v$fam2 === void 0 ? void 0 : _FAMILIES$v$fam2.years, "\u5E74")), isOpen && !sch && /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "12px 14px",
+        background: "#fff",
+        borderTop: "1px solid ".concat(color, "33"),
+        fontSize: 12,
+        color: "#8b7355"
+      }
+    }, "\u30B9\u30B1\u30B8\u30E5\u30FC\u30EB\u30C7\u30FC\u30BF\u306F\u6E96\u5099\u4E2D\u3067\u3059\u3002"));
+  }))), /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      background: "transparent",
+      color: "#2d5a3d",
+      border: "2px solid #2d5a3d",
+      borderRadius: 8,
+      padding: "9px 18px",
+      fontSize: 12,
+      cursor: "pointer",
+      fontFamily: SANS,
+      fontWeight: 600
+    }
+  }, "\u2190 \u30EC\u30A4\u30A2\u30A6\u30C8\u306B\u623B\u308B"));
+}
+
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 function GardenApp() {
-  var _useState1 = useState(1),
-    _useState10 = _slicedToArray(_useState1, 2),
-    step = _useState10[0],
-    setStep = _useState10[1];
-  var _useState11 = useState(""),
+  var _useState11 = useState(1),
     _useState12 = _slicedToArray(_useState11, 2),
-    region = _useState12[0],
-    setRegion = _useState12[1];
-  var _useState13 = useState(defaultBeds),
+    step = _useState12[0],
+    setStep = _useState12[1];
+  var _useState13 = useState(""),
     _useState14 = _slicedToArray(_useState13, 2),
-    beds = _useState14[0],
-    setBeds = _useState14[1];
-  var _useState15 = useState(""),
+    region = _useState14[0],
+    setRegion = _useState14[1];
+  var _useState15 = useState(defaultBeds),
     _useState16 = _slicedToArray(_useState15, 2),
-    orientation = _useState16[0],
-    setOrientation = _useState16[1];
-  var _useState17 = useState(false),
+    beds = _useState16[0],
+    setBeds = _useState16[1];
+  var _useState17 = useState(""),
     _useState18 = _slicedToArray(_useState17, 2),
-    shade = _useState18[0],
-    setShade = _useState18[1];
-  var _useState19 = useState("beginner"),
+    orientation = _useState18[0],
+    setOrientation = _useState18[1];
+  var _useState19 = useState(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    experience = _useState20[0],
-    setExperience = _useState20[1];
-  var _useState21 = useState([]),
+    shade = _useState20[0],
+    setShade = _useState20[1];
+  var _useState21 = useState("beginner"),
     _useState22 = _slicedToArray(_useState21, 2),
-    pastFams = _useState22[0],
-    setPastFams = _useState22[1];
-  var _useState23 = useState("ss"),
+    experience = _useState22[0],
+    setExperience = _useState22[1];
+  var _useState23 = useState([]),
     _useState24 = _slicedToArray(_useState23, 2),
-    season = _useState24[0],
-    setSeason = _useState24[1];
-  var _useState25 = useState([]),
+    pastFams = _useState24[0],
+    setPastFams = _useState24[1];
+  var _useState25 = useState("ss"),
     _useState26 = _slicedToArray(_useState25, 2),
-    selected = _useState26[0],
-    setSelected = _useState26[1];
-  var _useState27 = useState({}),
+    season = _useState26[0],
+    setSeason = _useState26[1];
+  var _useState27 = useState([]),
     _useState28 = _slicedToArray(_useState27, 2),
-    selectedVarieties = _useState28[0],
-    setSelectedVarieties = _useState28[1];
-  var _useState29 = useState("before"),
+    selected = _useState28[0],
+    setSelected = _useState28[1];
+  var _useState29 = useState({}),
     _useState30 = _slicedToArray(_useState29, 2),
-    purchaseMode = _useState30[0],
-    setPurchaseMode = _useState30[1];
-  var _useState31 = useState({}),
+    selectedVarieties = _useState30[0],
+    setSelectedVarieties = _useState30[1];
+  var _useState31 = useState("before"),
     _useState32 = _slicedToArray(_useState31, 2),
-    vegCounts = _useState32[0],
-    setVegCounts = _useState32[1];
+    purchaseMode = _useState32[0],
+    setPurchaseMode = _useState32[1];
   var _useState33 = useState({}),
     _useState34 = _slicedToArray(_useState33, 2),
-    bedContents = _useState34[0],
-    setBedContents = _useState34[1];
+    vegCounts = _useState34[0],
+    setVegCounts = _useState34[1];
+  var _useState35 = useState({}),
+    _useState36 = _slicedToArray(_useState35, 2),
+    bedContents = _useState36[0],
+    setBedContents = _useState36[1];
   var toggleVeg = function toggleVeg(id) {
     var v = getVeg(id);
     if (!v || v.d > EXP_MAX[experience]) return;
@@ -3790,6 +4522,4 @@ function GardenApp() {
   })));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(GardenApp));
-</script>
-</body>
-</html>
+</script></body></html>
